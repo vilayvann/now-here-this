@@ -19,24 +19,29 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="./lectures.html">Overview</a></li>
-            <li class="nav-item"><a class="nav-link" href="./labs.html">Staff</a></li>
-            <!--
-<li class="nav-item"><a class="nav-link" href="./assignments.html">Subscribe</a></li>
-<li class="nav-item"><a class="nav-link" href="./archive.html">Archive</a></li>
-<li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
--->
-
+            <li class="nav-item dropdown"><a class="nav-link dropdown" href="about.html">About</a>
+              <div class='dropdown-content'>
+                <a href='overview.html'>Overview</a>
+                <a href='staff.html'>Staff</a>
+                <a href='subscribe.html'>Subscribe</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
     <div class="container body">
+      <div class='row issue'>
+        <div class='col-12'>
+          <h3 class='issue-text'>Now Here This</h3>
+        </div>
+      </div>
       <div class='row headers'>
         <div class='col-12'>
-          <h3 class='header-text'>Featured Stories</h3>
+          <h3 class='header-text'><span class='header-span'>Featured Stories</span></h3>
         </div>
       </div>
       <div class='row'>
@@ -65,24 +70,29 @@
           </div>
         </div>
       </div>
-       <div class='row issue'>
+      <div class='row headers'>
+        <div class='col-12'>
+          <h3 class='header-text'><span class='header-span'>Current Issue</span></h3>
+        </div>
+      </div>
+      <div class='row issue'>
         <div class='col-12'>
           <h3 class='issue-text'>Found & Lost</h3>
         </div>
       </div>
-       <div class='row headers'>
+      <div class='row headers'>
         <div class='col-12'>
-          <h3 class='header-text'>News and Announcements</h3>
+          <h3 class='header-text'><span class='header-span'>News & Announcements</span></h3>
         </div>
       </div>
       <div class='row'>
         <div class='col-8 offset-2'>
-          <p>This is Annoucement 1</p>
+          <p class='announcements'>Currently accepting pitches! Contact xx@brown.edu for more info.</p>
         </div>
       </div>
       <div class='row'>
         <div class='col-8 offset-2'>
-          <p>This is Annoucement 2</p>
+          <p class='announcements'>Check out our newest issue! Link here. </p>
         </div>
       </div>
     </div>
