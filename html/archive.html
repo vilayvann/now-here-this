@@ -1,54 +1,84 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Archive</title>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Archive</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-toggleable-sm">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="Navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="../Home.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../About.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Archive.html">Archive</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Contact.html">Contact</a></li>
-                    </ul>
-                </div>
+  <nav class="navbar navbar-inverse navbar-toggleable-sm">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown" href="about.html">About</a>
+            <div class='dropdown-content'>
+              <a href='overview.html'>Overview</a>
+              <a href='staff.html'>Staff</a>
+              <a href='subscribe.html'>Subscribe</a>
             </div>
-        </nav>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <!-- placeholder for Now Here This logo -->
 	<img src="meme.jpg" style="width: 300px"></img>
 	
 
-	<div id="">
-        <div id="">
-            <h2 id="">Archive</h2>
-        </div>
-        <!-- pick a type to sort by -->
-        <div id="">
-            Sort By:
-            <select name="archive_sort_options" size="4" multiple>
-                <option value="chronological">Chronological</option>
-                <option value="alphabetical">Alphabetical</option>
-                <option value="issue">Issue</option>
-            </select>
-        </div>
-
-        <!-- placeholders for links to stories -->
-        <div id="">
-            <ul id="">
-                <li id=""><a href="story.html">Story1</a></li>
-                <li id=""><a href="story.html">Story2</a></li>
-                <li id=""><a href="story.html">Story3</a></li>
-                <li id=""><a href="story.html">Story4</a></li>
-            </ul>
-        </div>
+	<div class="container body">
+    <div class='row headers'>
+      <div class='col-12'>
+        <h3 class='header-text'><span class='header-span'>Archive</span></h3>
+      </div>
     </div>
+
+    <div id="">
+      Sort By:
+      <select name="archive_sort_options" size="4" multiple>
+          <option value="chronological">Chronological</option>
+          <option value="alphabetical">Alphabetical</option>
+          <option value="issue">Issue</option>
+      </select>
+    </div>
+    <!-- LIST OF STORIES -->
+    <div class='row'>
+        <div class='col-3'>
+          <div class='stories'>
+            <a href="../stories/story.html"><img src="../images/html.png" class='story-images'></a>
+            <h6>Story 1</h6>
+          </div>
+        </div>
+        <div class='col-3'>
+          <div class='stories'>
+            <img src="images/meme.jpg" class='story-images'>
+            <h6>Story 2</h6>
+          </div>
+        </div>
+        <div class='col-3'>
+          <div class='stories'>
+            <img src="images/meme2.jpg" class='story-images'>
+            <h6>Story 3</h6>
+          </div>
+        </div>
+        <div class='col-3'>
+          <div class='stories'>
+            <img src="images/meme3.jpg" class='story-images'>
+            <h6>Story 4</h6>
+          </div>
+        </div>
+      </div>
+  </div>
 
 </body>
 </html>
