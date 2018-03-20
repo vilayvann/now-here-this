@@ -11,6 +11,23 @@ li {
   display: inline-block;
 }
 
+.dark {
+  background-color: black;
+  color: grey;
+}
+
+footer {
+  padding-left: 20px;
+}
+
+.footer-text {
+  line-height: 10px;
+}
+
+.middle {
+  text-align: center;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
