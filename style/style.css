@@ -35,7 +35,28 @@ li {
 }
 
 .icons {
-  vertical-align: middle;
+  font-size: 25px;
+  color: grey;
+  margin: 0px 10px;
+  padding-top: 2px;
+}
+
+.search-li {
+  padding-top: 7px;
+  
+}
+
+.search-input {
+  line-height: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #c9c9c9;
+  padding: 3px;
+  margin-right: 5px;
+}
+
+.search-icon {
+  margin-right: 30px;
 }
 
 .body {
