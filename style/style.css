@@ -51,6 +51,10 @@ footer {
   display: block;
 }
 
+.dropdown-active {
+  color: white;
+}
+
 .icons {
   font-size: 25px;
   color: grey;
