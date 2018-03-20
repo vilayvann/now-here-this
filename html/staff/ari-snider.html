@@ -1,35 +1,52 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Staff | Ari Snider</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Staff | Ari Snider</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../style/style.css">
+        <script defer src="../../style/fontawesome-all.js"></script>
+    </head>
+
 
 <body>
-<nav class="navbar navbar-inverse navbar-toggleable-sm">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="Navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="../Home.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../About.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Archive.html">Archive</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    <!-- placeholder for Now Here This logo -->
-	<img src="../images/meme.jpg" style="width: 300px"></img>
+	<nav class="navbar navbar-inverse navbar-toggleable-sm">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class='nav-item'><a class="nav-link" href="#">(Logo)</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown" href="../overview.html">About</a>
+              <div class='dropdown-content'>
+                <a href='../overview.html'>Overview</a>
+                <a href='../staff.html'>Staff</a>
+                <a href='../subscribe.html'>Subscribe</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="../archive.html">Archive</a></li>
+            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class='nav-item search-li'><input type="text" class='search-input' placeholder="Search for stories"></li>
+            <li class='nav-item icons search-icon'><i class='fas fa-search'></i></li>
+            <li class='nav-item icons'><i class='fab fa-facebook'></i></li>
+            <li class='nav-item icons'><i class='fab fa-twitter'></i></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 	
 
-	<div id="">
-        <div id="ari_snider">
+	<div class="col-8">
+        <div class="col-4">
             <img src="../../images/staff/ari_snider.jpg"></img>
         </div>
-        <div id="ari_snider_info">
+        <div class="col-8">
             <ul class="staff_info">
                 <li class="staff_name">Name: Ari Snider</li>
                 <li class="staff_year">Year: 2018</li>
@@ -39,20 +56,39 @@
     </div>
 
 <!-- This section is visible only if the producer has stories.  -->
-    <div id="">
-        <div id="">
-            <h2 id="">Stories</h2>
+	
+    <div class="container body">
+      <div class='row headers'>
+        <div class='col-12'>
+          <h3 class='header-text'><span class='header-span'>Stories</span></h3>
         </div>
-
-        <!-- placeholders for links to stories -->
-        <div id="">
-            <ul id="">
-                <li id=""><a href="story.html">Story1</a></li>
-                <li id=""><a href="story.html">Story2</a></li>
-                <li id=""><a href="story.html">Story3</a></li>
-                <li id=""><a href="story.html">Story4</a></li>
-            </ul>
+      </div>
+      <div class='row'>
+        <div class='col-3'>
+          <div class='stories'>
+            <img src="../../images/stories/cat.jpg" class='story-images'>
+            <h6>Story 1</h6>
+          </div>
         </div>
+        <div class='col-3'>
+          <div class='stories'>
+            <img src="../../images/stories/michael-kennedy.jpg" class='story-images'>
+            <h6>Story 2</h6>
+          </div>
+        </div>
+        <div class='col-3'>
+          <div class='stories'>
+            <img src="../../images/stories/rock.jpg" class='story-images'>
+            <h6>Story 3</h6>
+          </div>
+        </div>
+        <div class='col-3'>
+          <div class='stories'>
+            <img src="../../images/stories/to-the-moon.jpg" class='story-images'>
+            <h6>Story 4</h6>
+          </div>
+        </div>
+      </div>
     </div>
 
 </body>
