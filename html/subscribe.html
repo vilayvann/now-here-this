@@ -7,9 +7,10 @@
     <title>About | Subscribe</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/style.css">
+    <script defer src="../style/fontawesome-all.js"></script>
   </head>
 
-<body>
+  <body>
     <nav class="navbar navbar-inverse navbar-toggleable-sm">
       <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
@@ -17,39 +18,42 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="navbar-nav mr-auto">
-          	<li class='nav-item'><a class="nav-link" href="index.html">(Logo)</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown" href="overview.html">About</a>
+            <li class='nav-item'><a class="nav-link" href="index.html">(Logo)</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item dropdown"><a class="nav-link" href="overview.html">About</a>
               <div class='dropdown-content'>
                 <a href='overview.html'>Overview</a>
                 <a href='staff.html'>Staff</a>
-                <a href='subscribe.html'>Subscribe</a>
+                <a href='#'>Subscribe</a>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
+            <li class="nav-item active"><a class="nav-link" href="archive.html">Archive</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class='nav-item search-li'><input type="text" class='search-input' placeholder="Search for stories"></li>
+            <li class='nav-item icons search-icon'><i class='fas fa-search'></i></li>
+            <li class='nav-item icons'><i class='fab fa-facebook'></i></li>
+            <li class='nav-item icons'><i class='fab fa-twitter'></i></li>
           </ul>
         </div>
       </div>
     </nav>
-	<!-- Content -->
-	<div class="container body">
-		<div class='row issue'>
+    <!-- Content -->
+    <div class="container body">
+      <div class='row issue'>
         <div class='col-12'>
           <h3 class='issue-text'>Subscribe</h3>
         </div>
       </div>
-		<div id="">
-			<ul id="">
-			<li id=""><a href="#">Itunes:...</a></li>
-			<li id=""><a href="#">Follow us on Facebook:...</a></li>
-			<li id=""><a href="#">Follow us on Twitter:...</a></li>
-		</ul>
-		</div>
-	</div>
+      <div>
+        <p>Follow us on Twitter: </p>
+        <p>Follow us on Facebook: </p>
+      </div>
+    </div>
 
-	<!-- Footer -->
-	    <footer class="page-footer font-small dark pt-4 pb-2 mt-4">
+    <!-- Footer -->
+    <footer class="page-footer font-small dark pt-4 pb-2 mt-4">
       <div class='container'>
         <div class='footer-text'>
           <p>Contact Us: info@nowherethis.org</p>
@@ -60,6 +64,6 @@
       </div>
     </footer>
 
-</body>
+  </body>
 
 </html>
