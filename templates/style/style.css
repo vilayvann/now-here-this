@@ -145,3 +145,17 @@ html, body {
   text-align: left;
   padding: 20px;
 }
+
+.story-page-photo {
+  width: 170px;
+  height: 170px;
+}
+
+.story-intro {
+  text-align: left;
+  padding; 20px;
+}
+.transcript {
+  text-align: left;
+  padding: 30px;
+}
