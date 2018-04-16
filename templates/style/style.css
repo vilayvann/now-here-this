@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Open+Sans');
+body {
+  font-family: 'Libre Franklin';
+}
+
+nav {
+  background-color: black;
+}
+
+li {
+  display: inline-block;
+}
+
+.dark {
+  background-color: black;
+  color: grey;
+}
+
+footer {
+  padding-left: 20px;
+}
+
+.footer-text {
+  line-height: 10px;
+}
+
+.middle {
+  text-align: center;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 90px;
+  z-index: 1;
+  color: grey;
+  padding: 10px;
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  color: grey;
+}
+
+.dropdown-content a:hover{
+  color: #b5b5b5;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-active {
+  color: white;
+}
+
+.icons {
+  font-size: 25px;
+  color: grey;
+  margin: 0px 10px;
+  padding-top: 2px;
+}
+
+.search-li {
+  padding-top: 7px;
+
+}
+
+.search-input {
+  line-height: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #c9c9c9;
+  padding: 3px;
+  margin-right: 5px;
+}
+
+.search-icon {
+  margin-right: 30px;
+}
+
+html, body {
+  height: 100%;
+}
+
+.body {
+  text-align: center;
+  min-height: 90%;
+  margin: 0 auto -100px;
+  padding-bottom: 100px;
+}
+
+.headers {
+  font-family: "Snell Roundhand", cursive;
+  height: 70px;
+  margin: 20px 0px 20px 0px;
+}
+
+.header-text {
+  line-height: 20px; 
+  display: inline-block;
+  position: relative;
+}
+
+.header-span {
+  display: inline-block;
+  width: 500px;
+  line-height: 60px;
+  background-color: white;
+  letter-spacing: 2px;
+  border-bottom: 1px solid black;
+}
+
+.story-images {
+  width: 80%;
+  height: 170px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+
+.issue {
+  height: 150px;
+  background-color: #324369;
+  margin: 20px 0px;
+}
+
+.issue-text {
+  font-family: "Snell Roundhand", cursive;
+  font-size: 60px;
+  line-height: 150px;
+  color: white;
+}
+
+.announcements {
+  padding: 3px;
+
+}
