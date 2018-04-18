@@ -22,7 +22,7 @@ function getDirectories(srcpath) {
     .filter(path => fs.statSync(path).isDirectory());
 }
 
-export function getDirectoriesRecursive(srcpath) {
+function getDirectoriesRecursive(srcpath) {
   return [srcpath, ...flatten(getDirectories(srcpath).map(getDirectoriesRecursive))];
 }
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -39,11 +39,22 @@ function getFilesInDir(dir) {
 
 ////////////////////////////////////////////////////////
 
-var dir_list = getDirectoriesRecursive('../stories')
-// make all directories to lowercase
-for (i = 1; i < dir_list.length; i++) {
-	console.log()
+function changeDirNames() {
+	var dir_list = getDirectoriesRecursive('../stories')
+
+	// Make all directory names in the correct format.
+	for (i = 1; i < dir_list.length; i++) {
+		var string = dir_list[i].toLowerCase().replace('../stories/', '').replace(/ /g, '-').replace(/[^\w\s-]/g, '');
+		console.log(string)
+
+		// Rename story folder names.
+		fs.rename(dir_list[i], string, function (err) {
+  		if (err) throw err;
+		  console.log('renamed complete');
+		});
+	}
 }
+changeDirNames()
 
 // TODO (vky): run this asynchronously.
 // Indexing from 1 because the 0th index is the folder names (not file names).

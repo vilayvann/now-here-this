@@ -23,8 +23,8 @@ process.on('SIGINT', function() {
 // the user, password, and url values will be explained next
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
 
-var schema = new Schema({
-    story_title:  String,
+var story_schema = new Schema({
+    story_title: String, // story folder name
     audio_filename: String,
     producer: String,
     transcript_filename: String,
@@ -37,6 +37,14 @@ var schema = new Schema({
     	views: Number, // optional
     	shares: Number // optional
     }
+});
+
+var staff_schema = new Schema({
+    first_name: String,
+    last_name: String,
+    role: String,
+    year: Date,
+    bio: String
 });
 
 // for loop that calls populateDatabase on all folders within /stories.
