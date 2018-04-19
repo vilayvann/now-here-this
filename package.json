@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/vilayvann/now-here-this#readme",
   "dependencies": {
+    "csv": "^3.0.2",
+    "mongoose": "^5.0.15",
     "rnum": "^1.0.0"
   }
 }
