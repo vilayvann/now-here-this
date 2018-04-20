@@ -1,4 +1,4 @@
-var utils = require('./utils.js');
+//var utils = require('./utils.js');
 var express = require('express'),
     bp = require('body-parser'),
     hogan = require('hogan.js'),
@@ -11,12 +11,12 @@ var app = express();
 
 app.use(bp.urlencoded({extended:false}));
 app.use(bp.json());
-app.use(express.static('templates'));
-app.use(express.static('staff'));
-app.use(express.static('stories'));
+app.use(express.static('../'));
+//app.use(express.static('../staff'));
+//app.use(express.static('../stories'));
 
 app.engine('html', engines.hogan);
-app.set('views', __dirname + '/templates');
+app.set('views', __dirname + '/../templates');
 app.set('view engine', 'html'); 
 
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
@@ -51,16 +51,41 @@ var staff_schema = new mongoose.Schema({
 var Staff = mongoose.model('Staff', staff_schema);
 
 app.get('/', function(req, res){
-    res.redirect('/index');
+    res.redirect('/index.html');
 });
 
-app.get('/home', function(req, res){
+app.get('/index.html', function(req, res){
     res.render('index.html');
 });
 
+app.get('/overview.html', function(req, res){
+    res.render('overview.html');
+});
+
+app.get('/contact.html', function(req, res){
+    res.render('contact.html');
+});
+
+app.get('/archive.html', function(req, res){
+    res.render('archive.html');
+});
+
+app.get('/issue.html', function(req, res){
+    res.render('issue.html');
+});
+
+app.get('/staff.html', function(req, res){
+    res.render('staff.html');
+});
+
+app.get('/subscribe.html', function(req, res){
+    res.render('subscribe.html');
+});
+
+
 app.get('/story/:storyName', function(req, res){
     Story.find({story_title: storyName}, function(err, data){
-        if data.length != 1 {
+        if (data.length != 1) {
             return console.err("wrong story request");
             res.redirect('/index');
         }
@@ -71,3 +96,6 @@ app.get('/story/:storyName', function(req, res){
     });
 });
 
+
+
+app.listen(8080);
