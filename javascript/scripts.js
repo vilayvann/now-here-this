@@ -56,6 +56,10 @@ function changeFileNames() {
 	}
 }
 
+function changeTitle(string) {
+	
+}
+
 
 
 
