@@ -71,7 +71,7 @@ app.get('/archive.html', function(req, res){
             if (i % 4 == 0) {
                 stories += "<div class='row'>";
             }
-            stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'><h6>" + data[i].story_title + "</h6></div></div>"
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'><h6>" + data[i].story_title + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
@@ -93,20 +93,20 @@ app.get('/subscribe.html', function(req, res){
 });
 
 
-app.get('/stories/:storyName', function(req, res){
+app.get('/:storyName', function(req, res){
     var storyName = req.params.storyName;
     Story.findOne({story_title: storyName}, function(err, data){   
         if (data == null) {
-            return console.log("wrong story request");
+            return console.log("staff request");
             res.redirect('/index.html');
         }
         res.render('story-page.html', {storyName: storyName, storyPath: storyName, 
                                        firstName: data.producer_first_name, lastName: data.producer_last_name})
     });
-//    res.render('story-page.html');
 });
 
 app.get('/staff/:staffName', function(req, res){
+    console.log("dddddd");
     var staffName = req.params.staffName;
     var arr = staffName.split('-');
     Staff.find({first_name: arr[0], last_name: arr[1]}, function(err, data){
