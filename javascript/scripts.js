@@ -3,6 +3,7 @@ const fs = require('fs');
 // PDFParser = require('pdf2json');
 // let pdfParser = new PDFParser(this, 1);
 const pdf = require('pdf-parse');
+var path = require('path')
 
 function changeDirNames() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
@@ -17,6 +18,20 @@ function changeDirNames() {
 		  console.log('renamed complete');
 		});
 	}
+}
+
+function changeStaffPhotoNames() {
+	var file_list = fs.readdirSync("../staff_photos/")
+	for (j = 0; j < file_list.length; j++) {
+		var extension = getFileExtension(file_list[j])
+		var newname = file_list[j].toLowerCase().replace('nht ', '').replace(/ /g, '-').replace(extension, '.jpg')
+		// console.log(newname)
+		fs.rename('../staff_photos/' + file_list[j], '../staff_photos/' + newname, function (err) {
+			if (err) throw err;
+			console.log('renamed staff photo')
+		})
+	}
+
 }
 
 function changeFileNames() {
@@ -42,6 +57,8 @@ function changeFileNames() {
 }
 
 
+
+
 function convertPdfToJson() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
 	var transcript = []
@@ -56,15 +73,16 @@ function convertPdfToJson() {
 			console.log('EXIST' + string)
 			// console.log(dataBuffer)
 			pdf(dataBuffer).then(function(data) {
-				transcript.push(data.text)
+				// transcript.push(data.text)
 				// console.log(data.text);
 				// dict[newname] = data.text;
-				// console.log('******************************')
-				// console.log(data.text);
+				console.log('******************************')
+				console.log(data.text);
 			})
 		} else {
 			console.log(string)
 		}
+		console.log
 	}
 	console.log(transcript.length)
 }
@@ -77,7 +95,9 @@ function getFileExtension(filename_str) {
 
 // changeFileNames()
 
-convertPdfToJson()
+// convertPdfToJson()
+
+// changeStaffPhotoNames()
 
 // for (i in dict) {
 // 	console.log("Name: " + i)

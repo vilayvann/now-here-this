@@ -48,7 +48,7 @@ function getFilesInDir(dir) {
 
 // DO NOT RUN THIS FOR FUN OR FOR TESTING.
 function readFromCsvAndPopulateStorySchema() {
-	var readStream = fs.createReadStream('../stories.csv');
+	var readStream = fs.createReadStream('../fake_stories.csv');
 	var parser = csv.parse({columns:true});
 
 	parser.on('readable', function() {
@@ -111,7 +111,7 @@ function readFromCsvAndPopulateStaffSchema() {
 }
 
 // readFromCsvAndPopulateStaffSchema()
-readFromCsvAndPopulateStorySchema()
+// readFromCsvAndPopulateStorySchema()
 
 // ############################################################
 exports.getDirectoriesRecursive = getDirectoriesRecursive
