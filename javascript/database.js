@@ -24,10 +24,10 @@ mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347
 
 var story_schema = new mongoose.Schema({
     story_title: String, // story folder name
-    audio_filename: String,
+    // audio_filename: String,
     producer_first_name: String,
     producer_last_name: String,
-    transcript: String,
+    // transcript: String,
     story_image: String,
     date_produced: Date,
     keywords_in_transcript: [ String ],

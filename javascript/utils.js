@@ -33,7 +33,6 @@ function getFilesInDir(dir) {
 	// So far, it's not possible to make this async.
 	var res = []
 	fs.readdirSync(dir).forEach(file => {
-
 		res.push(file)
 	});
 	return res
