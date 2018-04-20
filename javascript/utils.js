@@ -84,13 +84,13 @@ function readFromCsvAndPopulateStaffSchema() {
 			var split_name = record.name.split(" ");
 			if (split_name.length == 2) {
 				var first_name = split_name[0]
-				var second_name = split_name[1]
+				var last_name = split_name[1]
 			} else {
 				var first_name = split_name[0] + " " + split_name[1]
 				var last_name = split_name[2]
 			}
 
-			db.populateStaffSchema(first_name, last_name, record.role, record.bio)
+			db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
 		}
 	});
 

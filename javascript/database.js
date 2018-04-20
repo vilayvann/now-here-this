@@ -45,7 +45,7 @@ var staff_schema = new mongoose.Schema({
     first_name: String,
     last_name: String,
     role: String,
-    year: Date,
+    year: Number,
     bio: String
 });
 
@@ -98,6 +98,7 @@ function populateStaffSchema(first, last, role, year, bio) {
         first_name: first,
         last_name: last,
         role: role,
+        year: year,
         bio: bio
     });
     staff.save(function(err, data) {
