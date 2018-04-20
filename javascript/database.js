@@ -89,7 +89,23 @@ function populateInitial(story_title, producer_first, producer_last, date_produc
     story.save(function(err, data) {
         if (err) return console.error(err);
         console.log(data);
-    })
+    });
+    // mongoose.connection.close();
+}
+
+function populateStaffSchema(first, last, role, year, bio) {
+    var staff = new Staff({
+        first_name: first,
+        last_name: last,
+        role: role,
+        bio: bio
+    });
+    staff.save(function(err, data) {
+        if (err) return console.error(err);
+        console.log(data)
+    });
+    // mongoose.connection.close();
 }
 
 exports.populateInitial = populateInitial
+exports.populateStaffSchema = populateStaffSchema
