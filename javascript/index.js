@@ -71,8 +71,8 @@ app.get('/archive.html', function(req, res){
             if (i % 4 == 0) {
                 stories += "<div class='row'>";
             }
-            stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title ".jpg' class='story-images'><h6>" + data[i].story_title + "</h6></div></div>"
-            if (i % 4 == 3) {
+            stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'><h6>" + data[i].story_title + "</h6></div></div>"
+            if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
         }
@@ -93,27 +93,25 @@ app.get('/subscribe.html', function(req, res){
 });
 
 
-app.get('/stories/:storyName', function(req, res){
-    Story.findOne({story_title: storyName}, function(err, data){
+app.get('/:storyName', function(req, res){
+    var storyName = req.params.storyName;
+    Story.findOne({story_title: storyName}, function(err, data){   
         if (data == null) {
-            return console.err("wrong story request");
-            res.redirect('/index');
+            return console.log("wrong story request");
+            res.redirect('/index.html');
         }
-        var transcript = storyName + '.pdf'
-        var audio = storyName + '.mp3'
-        var image = storyName + '.jpg'
         res.render('story-page.html', {storyName: storyName, storyPath: storyName, 
-                                       firstName: data.producer_first_name, lastName: data.producer_last_name,
-                                       transcriptPath: transcript, imagePath: image, 
-                                       audiopath: audio})
+                                       firstName: data.producer_first_name, lastName: data.producer_last_name})
     });
+//    res.render('story-page.html');
 });
 
 app.get('/staff/:staffName', function(req, res){
+    var staffName = req.params.staffName;
     var arr = staffName.split('-');
     Staff.find({first_name: arr[0], last_name: arr[1]}, function(err, data){
         if (data.length != 1) {
-            return console.err("wrong story request");
+            return console.log("wrong staff request");
             res.redirect('/index');
         }
         var name = data[0].first_name + data[0].last_name;
@@ -126,8 +124,8 @@ app.get('/staff/:staffName', function(req, res){
                         if (i % 4 == 0) {
                             stories += "<div class='row'>";
                         }
-                        stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_title + "'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_title ".jpg' class='story-images'><h6>" + data2[i].story_title + "</h6></div></div>"
-                        if (i % 4 == 3) {
+                        stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_title + "'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_title + ".jpg' class='story-images'><h6>" + data2[i].story_title + "</h6></div></div>"
+                        if (i % 4 == 3 || i == data2.length - 1) {
                             stories += "</div>";
                         }
                     }
