@@ -93,7 +93,7 @@ app.get('/subscribe.html', function(req, res){
 });
 
 
-app.get('/:storyName', function(req, res){
+app.get('/stories/:storyName', function(req, res){
     var storyName = req.params.storyName;
     Story.findOne({story_title: storyName}, function(err, data){   
         if (data == null) {
