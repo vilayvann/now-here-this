@@ -65,7 +65,19 @@ app.get('/contact.html', function(req, res){
 });
 
 app.get('/archive.html', function(req, res){
-    res.render('archive.html');
+    Story.find({}, function(err, data){
+        var stories = "";
+        for (var i = 0; i < data.length; i++) {
+            if (i % 4 == 0) {
+                stories += "<div class='row'>";
+            }
+            stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title ".jpg' class='story-images'><h6>" + data[i].story_title + "</h6></div></div>"
+            if (i % 4 == 3) {
+                stories += "</div>";
+            }
+        }
+        res.render('archive.html', {stories: stories});
+    });
 });
 
 app.get('/issue.html', function(req, res){
@@ -81,16 +93,19 @@ app.get('/subscribe.html', function(req, res){
 });
 
 
-app.get('/story/:storyName', function(req, res){
-    Story.find({story_title: storyName}, function(err, data){
-        if (data.length != 1) {
+app.get('/stories/:storyName', function(req, res){
+    Story.findOne({story_title: storyName}, function(err, data){
+        if (data == null) {
             return console.err("wrong story request");
             res.redirect('/index');
         }
+        var transcript = storyName + '.pdf'
+        var audio = storyName + '.mp3'
+        var image = storyName + '.jpg'
         res.render('story-page.html', {storyName: storyName, storyPath: storyName, 
-                                       firstName: data[0].producer_first_name, lastName: data[0].producer_last_name,
-                                       transcriptPath: data[0].transcript, imagePath: data[0].story_image, 
-                                       audiopath: data[0].audio_filename})
+                                       firstName: data.producer_first_name, lastName: data.producer_last_name,
+                                       transcriptPath: transcript, imagePath: image, 
+                                       audiopath: audio})
     });
 });
 
@@ -111,7 +126,7 @@ app.get('/staff/:staffName', function(req, res){
                         if (i % 4 == 0) {
                             stories += "<div class='row'>";
                         }
-                        stories += "<div class='col-3'><div class='stories'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_image "'class='story-images'><h6>" + data2[i].story_title + "</h6></div></div>"
+                        stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_title + "'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_title ".jpg' class='story-images'><h6>" + data2[i].story_title + "</h6></div></div>"
                         if (i % 4 == 3) {
                             stories += "</div>";
                         }

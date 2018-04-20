@@ -1,97 +1,97 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <!--    <title>Story | 5am Rockefeller Library</title>-->
-        <title>Story | {{storyName}}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="style/style.css">
-        <script defer src="style/fontawesome-all.js"></script>
-    </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!--    <title>Story | 5am Rockefeller Library</title>-->
+    <title>Story | {{storyName}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <script defer src="style/fontawesome-all.js"></script>
+  </head>
 
 
-    <body>
-        <nav class="navbar navbar-inverse navbar-toggleable-sm">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class='nav-item'><a class="nav-link" href="#">(Logo)</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown" href="overview.html">About</a>
-                            <div class='dropdown-content'>
-                                <a href='overview.html'>Overview</a>
-                                <a href='staff.html'>Staff</a>
-                                <a href='subscribe.html'>Subscribe</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class='nav-item search-li'><input type="text" class='search-input' placeholder="Search for stories"></li>
-                        <li class='nav-item icons search-icon'><i class='fas fa-search'></i></li>
-                        <li class='nav-item icons'><i class='fab fa-facebook'></i></li>
-                        <li class='nav-item icons'><i class='fab fa-twitter'></i></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container body">
-            <div class='row headers'>
-                <div class='col-12'>
-                    <h3 class='header-text'><span class='header-span'>
-                        <!--              5AM, Rockefeller Library-->
-                        {{storyName}}
-                        </span></h3>
-                </div>
-            </div>
-            <div class='row'>
-                <div class="col-4">
-<!--                    <img src="../stories/5am-rockefeller-library/image.jpg" class='story-page-photo'/>-->
-                    <img src="../stories/{{storyPath}}/{{imagePath}}" class='story-page-photo'/>
-                </div>
-                <div class="col-8 story-intro">
-<!--                    <p>Produced by: Lauren Black and Mitchell Johnson</p>-->
-                    <p>Produced by: {{firstName}} {{lastName}}</p>
-<!--                    <p>A late night in the library leads to reflections on time, fate, and the story of Abraham.</p>-->
-                    <p>{{intro}}</p>
-                    <audio controls>
-<!--                        <source src="../stories/5am-rockefeller-library/Late Night Rock.mp3" type="audio/mpeg">-->
-                        <source src="../stories/{{storyPath}}/{{audioPath}}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-            <div class='row headers'>
-                <div class='col-12'>
-                    <h3 class='header-text'><span class='header-span'>Transcript</span></h3>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-12 transcript'>
-<!--                    <center><iframe src="../stories/5am-rockefeller-library/5amRockefellerLibrary.pdf" frameborder="0"></iframe></center>-->
-                  <center><iframe src="../stories/{{storyPath}}/{{transcriptPath}}" frameborder="0"></iframe></center>  
-                </div>
-            </div>
+  <body>
+    <nav class="navbar navbar-inverse navbar-toggleable-sm">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class='nav-item'><a class="nav-link" href="#">(Logo)</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown" href="overview.html">About</a>
+              <div class='dropdown-content'>
+                <a href='overview.html'>Overview</a>
+                <a href='staff.html'>Staff</a>
+                <a href='subscribe.html'>Subscribe</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class='nav-item search-li'><input type="text" class='search-input' placeholder="Search for stories"></li>
+            <li class='nav-item icons search-icon'><i class='fas fa-search'></i></li>
+            <li class='nav-item icons'><i class='fab fa-facebook'></i></li>
+            <li class='nav-item icons'><i class='fab fa-twitter'></i></li>
+          </ul>
         </div>
+      </div>
+    </nav>
+
+    <div class="container body">
+      <div class='row headers'>
+        <div class='col-12'>
+          <h3 class='header-text'><span class='header-span'>
+            <!--              5AM, Rockefeller Library-->
+            {{storyName}}
+            </span></h3>
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col-4">
+          <!--                    <img src="../stories/5am-rockefeller-library/image.jpg" class='story-page-photo'/>-->
+          <img src="../stories/{{storyPath}}/{{imagePath}}" class='story-page-photo'/>
+        </div>
+        <div class="col-8 story-intro">
+          <!--                    <p>Produced by: Lauren Black and Mitchell Johnson</p>-->
+          <p>Produced by: {{firstName}} {{lastName}}</p>
+          <!--                    <p>A late night in the library leads to reflections on time, fate, and the story of Abraham.</p>-->
+          <p>{{intro}}</p>
+          <audio controls>
+            <!--                        <source src="../stories/5am-rockefeller-library/Late Night Rock.mp3" type="audio/mpeg">-->
+            <source src="../stories/{{storyPath}}/{{audioPath}}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+      <div class='row headers'>
+        <div class='col-12'>
+          <h3 class='header-text'><span class='header-span'>Transcript</span></h3>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12 transcript'>
+          <!--                    <center><iframe src="../stories/5am-rockefeller-library/5amRockefellerLibrary.pdf" frameborder="0"></iframe></center>-->
+          <center><iframe src="../stories/{{storyPath}}/{{transcriptPath}}" frameborder="0"></iframe></center>  
+        </div>
+      </div>
+    </div>
 
 
-        <footer class="page-footer font-small dark pt-4 pb-2 mt-4">
-            <div class='container'>
-                <div class='footer-text'>
-                    <p>Contact Us: info@nowherethis.org</p>
-                </div>
-                <div class='footer-text'>
-                    <p>@Copyright 2017 - All Rights Reserved</p>
-                </div>
-            </div>
-        </footer>
+    <footer class="page-footer font-small dark pt-4 pb-2 mt-4">
+      <div class='container'>
+        <div class='footer-text'>
+          <p>Contact Us: info@nowherethis.org</p>
+        </div>
+        <div class='footer-text'>
+          <p>@Copyright 2017 - All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
 
-    </body>
+  </body>
 </html>
