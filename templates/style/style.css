@@ -155,7 +155,13 @@ html, body {
   text-align: left;
   padding; 20px;
 }
+
 .transcript {
   text-align: left;
   padding: 30px;
+}
+
+.transcript iframe {
+    width: 80%;
+    height: 600px;
 }
