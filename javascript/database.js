@@ -90,7 +90,7 @@ function populateInitial(story_title, producer_first, producer_last, date_produc
     });
     story.save(function(err, data) {
         if (err) return console.error(err);
-        console.log(data);
+        // console.log(data);
     });
     // mongoose.connection.close();
 }

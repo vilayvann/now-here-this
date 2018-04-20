@@ -66,6 +66,7 @@ app.get('/contact.html', function(req, res){
 
 app.get('/archive.html', function(req, res){
     Story.find({}, function(err, data){
+        console.log(data)
         var stories = "";
         for (var i = 0; i < data.length; i++) {
             if (i % 4 == 0) {
@@ -100,6 +101,7 @@ app.get('/stories/:storyName', function(req, res){
             return console.log("wrong story request");
             res.redirect('/index.html');
         }
+        console.log(data)
         res.render('story-page.html', {storyName: storyName, storyPath: storyName, 
                                        firstName: data.producer_first_name, lastName: data.producer_last_name})
     });
