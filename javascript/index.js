@@ -90,7 +90,21 @@ app.get('/issue.html', function(req, res){
 });
 
 app.get('/staff.html', function(req, res){
-    res.render('staff.html');
+    Staff.find({}, function(err, data){
+        var staff = "";
+        for (var i = 0; i < data.length; i++) {
+            if (i % 4 == 0) {
+                staff += "<div class='row'>";
+            }
+            var path = data[i].first_name.toLowerCase() + "-" + data[i].last_name.toLowerCase();
+            staff += "<div class='col-3'><div class='stories'><a href='/staff/" + path + "'><img src='../staff/" + path + ".jpg' class='story-images'></a><h6>" + data[i].first_name + " " + data[i].last_name + "</h6></div></div>"
+            if (i % 4 == 3 || i == data.length - 1) {
+                staff += "</div>";
+            }
+        }
+        res.render('staff.html', {staff: staff});
+    });
+    
 });
 
 app.get('/subscribe.html', function(req, res){
