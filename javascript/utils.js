@@ -46,8 +46,8 @@ function getFilesInDir(dir) {
 // 	console.log(file_list)
 // }
 
-// Used to initially populate the database.
-function readFromCsvAndPopulateDatabase(csv_file) {
+// Used to initially populate the database; Story schema
+function readFromCsvAndPopulateDatabase() {
 	var readStream = fs.createReadStream('../stories.csv');
 	var parser = csv.parse({columns:true});
 
