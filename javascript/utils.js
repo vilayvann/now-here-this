@@ -53,13 +53,13 @@ function readFromCsvAndPopulateStorySchema() {
 
 	parser.on('readable', function() {
 		while (record = parser.read()) {
-			// console.log(record)
+			// console.log('aaaaaaaa' + record.producer_first_name)
 			if (record.day === '') {
 				var date_produced = record.year + "-" + record.month + "-01"
-				console.log('ddddd' + date_produced)
+				// console.log('ddddd' + date_produced)
 			} else {
 				var date_produced = record.year + "-" + record.month + "-" + record.day
-				console.log('ddddd' + date_produced)
+				// console.log('ddddd' + date_produced)
 			}
 			
 			db.populateInitial(record.story_title, record.producer_first_name, record.producer_last_name, date_produced,0)
@@ -111,7 +111,7 @@ function readFromCsvAndPopulateStaffSchema() {
 }
 
 // readFromCsvAndPopulateStaffSchema()
-// readFromCsvAndPopulateStorySchema()
+readFromCsvAndPopulateStorySchema()
 
 // ############################################################
 exports.getDirectoriesRecursive = getDirectoriesRecursive
