@@ -4,8 +4,6 @@ var express = require('express'),
     hogan = require('hogan.js'),
     engines = require('consolidate'),
     mongoose = require('mongoose');
-// for loop that calls populateDatabase on all folders within /stories.
-// TODO (vky): loop through directories
 
 var app = express();
 
@@ -53,7 +51,13 @@ app.get('/', function(req, res){
 });
 
 app.get('/index.html', function(req, res){
-    res.render('index.html');
+    Story.find({}, function(err, data){
+        var stories = "";
+        for (var i = 0; i < data.length; i++) {
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + data[i].story_title + "</h6></div></div>"
+        }
+        res.render('index.html', {stories: stories});
+    }).limit(4);
 });
 
 app.get('/overview.html', function(req, res){
@@ -66,13 +70,12 @@ app.get('/contact.html', function(req, res){
 
 app.get('/archive.html', function(req, res){
     Story.find({}, function(err, data){
-        console.log(data)
         var stories = "";
         for (var i = 0; i < data.length; i++) {
             if (i % 4 == 0) {
                 stories += "<div class='row'>";
             }
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'><h6>" + data[i].story_title + "</h6></div></div>"
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + data[i].story_title + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
@@ -101,14 +104,12 @@ app.get('/:storyName', function(req, res){
             return console.log("staff request");
             res.redirect('/index.html');
         }
-        console.log(data)
         res.render('story-page.html', {storyName: storyName, storyPath: storyName, 
                                        firstName: data.producer_first_name, lastName: data.producer_last_name})
     });
 });
 
 app.get('/staff/:staffName', function(req, res){
-    console.log("dddddd");
     var staffName = req.params.staffName;
     var arr = staffName.split('-');
     Staff.find({first_name: arr[0], last_name: arr[1]}, function(err, data){
@@ -126,7 +127,7 @@ app.get('/staff/:staffName', function(req, res){
                         if (i % 4 == 0) {
                             stories += "<div class='row'>";
                         }
-                        stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_title + "'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_title + ".jpg' class='story-images'><h6>" + data2[i].story_title + "</h6></div></div>"
+                        stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_title + "'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_title + ".jpg' class='story-images'></a><h6>" + data2[i].story_title + "</h6></div></div>"
                         if (i % 4 == 3 || i == data2.length - 1) {
                             stories += "</div>";
                         }
