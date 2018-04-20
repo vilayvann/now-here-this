@@ -70,8 +70,8 @@ function convertPdfToJson() {
 	console.log(transcript.length)
 }
 
-function getFileExtension(filename) {
-	return filename.split('.').pop();
+function getFileExtension(filename_str) {
+	return path.extname(filename_str)
 }
 
 // changeDirNames()
