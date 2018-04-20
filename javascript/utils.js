@@ -69,7 +69,7 @@ function readFromCsvAndPopulateDatabase(csv_file) {
 	});
 
 	parser.on('finish', (function() {
-		console.log(strings);
+		console.log('finish');
 	}));
 
 	readStream.pipe(parser);

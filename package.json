@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/vilayvann/now-here-this#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "consolidate": "^0.15.1",
     "csv": "^3.0.2",
+    "express": "^4.16.3",
+    "hogan.js": "^3.0.2",
     "mongoose": "^5.0.15",
     "rnum": "^1.0.0"
   }
