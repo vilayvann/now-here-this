@@ -24,10 +24,10 @@ mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347
 
 var story_schema = new mongoose.Schema({
     story_title: String, // story folder name
-    audio_filename: String,
+    // audio_filename: String,
     producer_first_name: String,
     producer_last_name: String,
-    transcript: String,
+    // transcript: String,
     story_image: String,
     date_produced: String,
     keywords_in_transcript: [ String ],
@@ -45,7 +45,7 @@ var staff_schema = new mongoose.Schema({
     first_name: String,
     last_name: String,
     role: String,
-    year: Date,
+    year: Number,
     bio: String
 });
 
@@ -91,7 +91,24 @@ function populateInitial(story_title, producer_first, producer_last, date_produc
     story.save(function(err, data) {
         if (err) return console.error(err);
         console.log(data);
-    })
+    });
+    // mongoose.connection.close();
+}
+
+function populateStaffSchema(first, last, role, year, bio) {
+    var staff = new Staff({
+        first_name: first,
+        last_name: last,
+        role: role,
+        year: year,
+        bio: bio
+    });
+    staff.save(function(err, data) {
+        if (err) return console.error(err);
+        console.log(data)
+    });
+    // mongoose.connection.close();
 }
 
 exports.populateInitial = populateInitial
+exports.populateStaffSchema = populateStaffSchema

@@ -33,7 +33,6 @@ function getFilesInDir(dir) {
 	// So far, it's not possible to make this async.
 	var res = []
 	fs.readdirSync(dir).forEach(file => {
-
 		res.push(file)
 	});
 	return res
@@ -47,8 +46,8 @@ function getFilesInDir(dir) {
 // 	console.log(file_list)
 // }
 
-// Used to initially populate the database.
-function readFromCsvAndPopulateDatabase(csv_file) {
+// DO NOT RUN THIS FOR FUN OR FOR TESTING.
+function readFromCsvAndPopulateDatabase() {
 	var readStream = fs.createReadStream('../stories.csv');
 	var parser = csv.parse({columns:true});
 
@@ -80,7 +79,39 @@ function readFromCsvAndPopulateDatabase(csv_file) {
 	readStream.pipe(parser);
 }
 
-readFromCsvAndPopulateDatabase()
+// DO NOT RUN THIS FOR FUN OR FOR TESTING.
+function readFromCsvAndPopulateStaffSchema() {
+	var readStream = fs.createReadStream('../staff.csv');
+	var parser = csv.parse({columns:true});
+
+	parser.on('readable', function() {
+		while (record = parser.read()) {
+			var split_name = record.name.split(" ");
+			if (split_name.length == 2) {
+				var first_name = split_name[0]
+				var last_name = split_name[1]
+			} else {
+				var first_name = split_name[0] + " " + split_name[1]
+				var last_name = split_name[2]
+			}
+
+			db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
+		}
+	});
+
+	parser.on('error', function(err) {
+		console.log(err.message);
+	});
+
+	parser.on('finish', (function() {
+		console.log('finish');
+	}));
+
+	readStream.pipe(parser);
+}
+
+// readFromCsvAndPopulateStaffSchema()
+// readFromCsvAndPopulateDatabase()
 
 // ############################################################
 exports.getDirectoriesRecursive = getDirectoriesRecursive
