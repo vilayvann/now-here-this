@@ -29,7 +29,7 @@ var story_schema = new mongoose.Schema({
     producer_last_name: String,
     transcript: String,
     story_image: String,
-    date_produced: Date,
+    date_produced: String,
     keywords_in_transcript: [ String ],
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
     issue_name: String, 
@@ -53,7 +53,7 @@ var Staff = mongoose.model('Staff', staff_schema);
 
 // TODO: Might not need to store mp3, pdf file names in database, since we can go into dir and get them.
 function populateDatabase(story_title, audio_filename, producer_first, producer_last, transcript, story_image, date_produced, keywords_in_transcript, issue_id, issue_name, views, shares) {
-
+    console.log(story_title)
     var entry = {
         story_title: story_title
     }
@@ -80,10 +80,12 @@ function populateInitial(story_title, producer_first, producer_last, date_produc
     //        date_produced: date_produced,
     //        issue_id: issue_id
     //    }, {upsert: true});
+
     var story = new Story({
         story_title: story_title, 
         producer_first_name: producer_first,
         producer_last_name: producer_last,
+        date_produced: date_produced,
         issue_id: issue_id
     });
     story.save(function(err, data) {

@@ -54,13 +54,18 @@ function readFromCsvAndPopulateDatabase(csv_file) {
 
 	parser.on('readable', function() {
 		while (record = parser.read()) {
+			// console.log(record)
 			if (record.day === '') {
-				var date_produced = new Date(record.year, record.month, 1)
+				var date_produced = record.year + "-" + record.month + "-01"
+				console.log('ddddd' + date_produced)
 			} else {
-				var date_produced = new Date(record.year, record.month, record.day)
+				var date_produced = record.year + "-" + record.month + "-" + record.day
+				console.log('ddddd' + date_produced)
 			}
 			
-			db.populateInitial(record.story_tile, record.producer_first_name, record.producer_last_name, date_produced,0)
+			db.populateInitial(record.story_title, record.producer_first_name, record.producer_last_name, date_produced,0)
+			// db.populateInitial(record.story_title, record.producer_first_name, record.producer_last_name, date_produced,0)
+
 		}
 	});
 
