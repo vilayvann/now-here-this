@@ -44,7 +44,10 @@
     <div class="container body">
       <div class='row headers'>
         <div class='col-12'>
-          <h3 class='header-text'><span class='header-span'>Ari Snider</span></h3>
+          <h3 class='header-text'><span class='header-span'>
+<!--              Ari Snider-->
+              {{name}}
+              </span></h3>
         </div>
       </div>
       <div class='row'>
@@ -52,11 +55,16 @@
           <img src="../staff/ari-snider.jpg" class='staff-photo'/>
         </div>
         <div class="col-6 staff-intro">
-          <p>Role: Editor/Producer</p>
-          <p>Year: 2018.5</p>
-          <p>Ari Snider is from the coast of Maine and enjoys making stories about bicycles, compost, and ghosts.</p>
+<!--          <p>Role: Editor/Producer</p>-->
+<!--          <p>Year: 2018.5</p>-->
+<!--          <p>Ari Snider is from the coast of Maine and enjoys making stories about bicycles, compost, and ghosts.</p>-->
+            <p>Role: {{role}}</p>
+            <p>Year: {{year}}</p>
+            <p>{{intro}}</p>
         </div>
       </div>
+        {{{stories}}}
+<!--
       <div class='row headers'>
         <div class='col-12'>
           <h3 class='header-text'><span class='header-span'>Stories</span></h3>
@@ -89,6 +97,7 @@
         </div>
       </div>
     </div>
+-->
 
 
     <footer class="page-footer font-small dark pt-4 pb-2 mt-4">

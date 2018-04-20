@@ -12,8 +12,6 @@ var app = express();
 app.use(bp.urlencoded({extended:false}));
 app.use(bp.json());
 app.use(express.static('../'));
-//app.use(express.static('../staff'));
-//app.use(express.static('../stories'));
 
 app.engine('html', engines.hogan);
 app.set('views', __dirname + '/../templates');
@@ -95,6 +93,38 @@ app.get('/story/:storyName', function(req, res){
                                        audiopath: data[0].audio_filename})
     });
 });
+
+app.get('/staff/:staffName', function(req, res){
+    var arr = staffName.split('-');
+    Staff.find({first_name: arr[0], last_name: arr[1]}, function(err, data){
+        if (data.length != 1) {
+            return console.err("wrong story request");
+            res.redirect('/index');
+        }
+        var name = data[0].first_name + data[0].last_name;
+        if (data[0].role == 'Producer'){
+            Story.find({producer_first_name: arr[0], producer_last_name: arr[1]}, function(err, data2){
+                var stories = "";
+                if (data2.length > 0) {
+                    var stories = "<div class='row headers'><div class='col-12'><h3 class='header-text'><span class='header-span'>Stories</span></h3></div></div>";
+                    for (var i = 0; i < data2.length; i++) {
+                        if (i % 4 == 0) {
+                            stories += "<div class='row'>";
+                        }
+                        stories += "<div class='col-3'><div class='stories'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_image "'class='story-images'><h6>" + data2[i].story_title + "</h6></div></div>"
+                        if (i % 4 == 3) {
+                            stories += "</div>";
+                        }
+                    }
+                    stories += "</div>";
+                }
+            });
+            res.render('staff-page.html', {name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: stories});
+        } else {
+            res.render('staff-page.html', {name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: ""});
+        }
+    });
+})
 
 
 
