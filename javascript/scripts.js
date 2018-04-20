@@ -56,15 +56,16 @@ function convertPdfToJson() {
 			console.log('EXIST' + string)
 			// console.log(dataBuffer)
 			pdf(dataBuffer).then(function(data) {
-				transcript.push(data.text)
+				// transcript.push(data.text)
 				// console.log(data.text);
 				// dict[newname] = data.text;
-				// console.log('******************************')
-				// console.log(data.text);
+				console.log('******************************')
+				console.log(data.text);
 			})
 		} else {
 			console.log(string)
 		}
+		console.log
 	}
 	console.log(transcript.length)
 }
