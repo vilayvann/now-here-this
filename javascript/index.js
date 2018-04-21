@@ -12,18 +12,18 @@ app.use(express.static('../'));
 
 app.engine('html', engines.hogan);
 app.set('views', __dirname + '/../templates');
-app.set('view engine', 'html'); 
+app.set('view engine', 'html');
 
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
 
 var story_schema = new mongoose.Schema({
-    story_title: String, 
+    story_title: String,
     producer_first_name: String,
     producer_last_name: String,
     date_produced: String,
     keywords_in_transcript: [ String ],
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
-    issue_name: String, 
+    issue_name: String,
     meta: {
         views: Number, // optional
         shares: Number // optional
@@ -92,14 +92,15 @@ app.get('/staff.html', function(req, res){
                 staff += "<div class='row'>";
             }
             var path = data[i].first_name + "-" + data[i].last_name;
-            staff += "<div class='col-3'><div class='stories'><a href='/" + path + "'><img src='../staff/" + path + ".jpg' class='story-images'></a><h6>" + data[i].first_name + " " + data[i].last_name + "</h6></div></div>"
+            var lower = path.toLowerCase();
+            staff += "<div class='col-3'><div class='stories'><a href='/" + path + "'><img src='../staff/" + lower + ".jpg' class='story-images'></a><h6>" + data[i].first_name + " " + data[i].last_name + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 staff += "</div>";
             }
         }
         res.render('staff.html', {staff: staff});
     });
-    
+
 });
 
 app.get('/subscribe.html', function(req, res){
@@ -109,16 +110,18 @@ app.get('/subscribe.html', function(req, res){
 
 app.get('/:storyName', function(req, res){
     var storyName = req.params.storyName;
-    Story.findOne({story_title: storyName}, function(err, data){   
+    Story.findOne({story_title: storyName}, function(err, data){
         if (data == null) {
             var staffName = storyName;
                 var arr = staffName.split('-');
-                
+
                 Staff.find({first_name: arr[0], last_name: arr[1]}, function(err, data){
-                    if (data.length != 1) {
+                    if (data.length < 1) {
                         res.redirect('/index.html');
+                        return;
                     }
                     var name = data[0].first_name + ' ' + data[0].last_name;
+                    var nameLower = staffName.toLowerCase();
                      if (data[0].role == 'Producer'){
                          Story.find({producer_first_name: arr[0], producer_last_name: arr[1]}, function(err, data2){
                              var stories = "";
@@ -135,18 +138,18 @@ app.get('/:storyName', function(req, res){
                                  }
                                  stories += "</div>";
                              }
-                             res.render('staff-page.html', {staffName: staffName, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: stories});
+                             res.render('staff-page.html', {staffName: nameLower, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: stories});
                          });
-                         
+
                      } else {
-                        res.render('staff-page.html', {staffName: staffName, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: ""});
+                        res.render('staff-page.html', {staffName: nameLower, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: ""});
                      }
                 });
         } else {
-            res.render('story-page.html', {storyName: storyName, storyPath: storyName, 
+            res.render('story-page.html', {storyName: storyName, storyPath: storyName,
                                        firstName: data.producer_first_name, lastName: data.producer_last_name})
         }
-        
+
     });
 });
 
