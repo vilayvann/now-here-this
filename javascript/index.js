@@ -121,11 +121,8 @@ app.get('/:storyName', function(req, res){
             var staffName = storyName;
                 var arr = staffName.split('-');
                 
-                // console.log(arr);
                 Staff.find({first_name: arr[0].replace(/\b[a-z]/g,function(s){return s.toUpperCase();}), last_name: arr[1].replace(/\b[a-z]/g,function(s){return s.toUpperCase();})}, function(err, data){
-                    // console.log(data)
                     if (data.length != 1) {
-                        return console.log("wrong staff request");
                         res.redirect('/index');
                     }
                     var name = data[0].first_name + ' ' + data[0].last_name;
