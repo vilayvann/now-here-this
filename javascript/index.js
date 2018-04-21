@@ -116,7 +116,7 @@ app.get('/:storyName', function(req, res){
                 
                 Staff.find({first_name: arr[0].replace(/\b[a-z]/g,function(s){return s.toUpperCase();}), last_name: arr[1].replace(/\b[a-z]/g,function(s){return s.toUpperCase();})}, function(err, data){
                     if (data.length != 1) {
-                        res.redirect('/index');
+                        res.redirect('/index.html');
                     }
                     var name = data[0].first_name + ' ' + data[0].last_name;
                      if (data[0].role == 'Producer'){
