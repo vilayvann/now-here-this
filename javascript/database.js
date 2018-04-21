@@ -57,29 +57,10 @@ function populateDatabase(story_title, audio_filename, producer_first, producer_
     var entry = {
         story_title: story_title
     }
-
-    // collection.update({_id:story_title}, {
-    //     story_title: story_title, 
-    //     audio_filename: 
-    //     producer_first_name: producer_first, 
-    //     producer_last_name: producer_last,
-    //     date_produced: date_produced,
-    //     issue_id: issue_id,
-    //     issue_name:issue_name,
-    //     meta: {views: views, shares: shares}
-    //     }update[[, options], callback]);
-    }
+}
 
 // populate data extracted from stories.csv, to store in database.
 function populateInitial(story_title, producer_first, producer_last, date_produced, issue_id) {
-    //  var collection = db.collection()
-    //  collection.update({_id:story_title}, {
-    //        story_title: story_title, 
-    //        producer_first_name: producer_first, 
-    //        producer_last_name: producer_last,
-    //        date_produced: date_produced,
-    //        issue_id: issue_id
-    //    }, {upsert: true});
 
     var story = new Story({
         story_title: story_title, 
