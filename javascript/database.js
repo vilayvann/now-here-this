@@ -28,11 +28,11 @@ var story_schema = new mongoose.Schema({
     producer_first_name: String,
     producer_last_name: String,
     // transcript: String,
-    story_image: String,
+    // story_image: String,
     date_produced: String,
     keywords_in_transcript: [ String ],
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
-    issue_name: String, 
+    // issue_name: String, 
     meta: {
         views: Number, // optional
         shares: Number // optional
@@ -45,7 +45,7 @@ var staff_schema = new mongoose.Schema({
     first_name: String,
     last_name: String,
     role: String,
-    year: Number,
+    year: String,
     bio: String
 });
 

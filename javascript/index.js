@@ -20,12 +20,12 @@ mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347
 
 var story_schema = new mongoose.Schema({
     story_title: String, // story folder name
-    audio_filename: String,
+    // audio_filename: String,
     producer_first_name: String,
     producer_last_name: String,
-    transcript: String,
-    story_image: String,
-    date_produced: Date,
+    // transcript: String,
+    // story_image: String,
+    date_produced: String,
     keywords_in_transcript: [ String ],
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
     issue_name: String, 
@@ -41,7 +41,7 @@ var staff_schema = new mongoose.Schema({
     first_name: String,
     last_name: String,
     role: String,
-    year: Date,
+    year: Number,
     bio: String
 });
 
