@@ -91,7 +91,7 @@ app.get('/staff.html', function(req, res){
             if (i % 4 == 0) {
                 staff += "<div class='row'>";
             }
-            var path = data[i].first_name.toLowerCase() + "-" + data[i].last_name.toLowerCase();
+            var path = data[i].first_name + "-" + data[i].last_name;
             staff += "<div class='col-3'><div class='stories'><a href='/" + path + "'><img src='../staff/" + path + ".jpg' class='story-images'></a><h6>" + data[i].first_name + " " + data[i].last_name + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 staff += "</div>";
@@ -114,7 +114,7 @@ app.get('/:storyName', function(req, res){
             var staffName = storyName;
                 var arr = staffName.split('-');
                 
-                Staff.find({first_name: arr[0].replace(/\b[a-z]/g,function(s){return s.toUpperCase();}), last_name: arr[1].replace(/\b[a-z]/g,function(s){return s.toUpperCase();})}, function(err, data){
+                Staff.find({first_name: arr[0], last_name: arr[1]}, function(err, data){
                     if (data.length != 1) {
                         res.redirect('/index.html');
                     }
