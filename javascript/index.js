@@ -146,7 +146,8 @@ app.get('/:storyName', function(req, res){
                      }
                 });
         } else {
-            res.render('story-page.html', {storyName: storyName, storyPath: storyName,
+            var storyNameParsed = storyName.split('-').join(' ');
+            res.render('story-page.html', {storyName: storyNameParsed, storyPath: storyName,
                                        firstName: data.producer_first_name, lastName: data.producer_last_name})
         }
 
