@@ -50,7 +50,8 @@ app.get('/index.html', function(req, res){
     Story.find({}, function(err, data){
         var stories = "";
         for (var i = 0; i < data.length; i++) {
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + data[i].story_title + "</h6></div></div>"
+            var storyName = data[i].story_title.split('-').join(' ');
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
         }
         res.render('index.html', {stories: stories});
     }).limit(4);
@@ -71,7 +72,8 @@ app.get('/archive.html', function(req, res){
             if (i % 4 == 0) {
                 stories += "<div class='row'>";
             }
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + data[i].story_title + "</h6></div></div>"
+            var storyName = data[i].story_title.split('-').join(' ');
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
@@ -80,8 +82,8 @@ app.get('/archive.html', function(req, res){
     });
 });
 
-app.get('/issue.html', function(req, res){
-    res.render('issue.html');
+app.get('/issues.html', function(req, res){
+    res.render('issues.html');
 });
 
 app.get('/staff.html', function(req, res){

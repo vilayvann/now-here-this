@@ -28,7 +28,7 @@ footer {
   text-align: center;
 }
 
-.dropdown-content {
+.dropdown-content, .dropdown-content-2 {
   display: none;
   position: absolute;
   background-color: black;
@@ -38,12 +38,12 @@ footer {
   padding: 10px;
 }
 
-.dropdown-content a {
+.dropdown-content a, .dropdown-content-2 a {
   text-decoration: none;
   color: grey;
 }
 
-.dropdown-content a:hover{
+.dropdown-content a:hover, .dropdown-content-2 a:hover{
   color: #b5b5b5;
 }
 
@@ -53,6 +53,10 @@ footer {
 
 .dropdown-active {
   color: white;
+}
+
+.dropdown-2:hover .dropdown-content-2 {
+    display: block;
 }
 
 .icons {
