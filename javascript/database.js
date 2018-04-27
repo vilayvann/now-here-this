@@ -27,6 +27,7 @@ var story_schema = new mongoose.Schema({
     story_title: String, // story real name, for example, aqua life central
     // audio_filename: String,
     producers: [String], // for example, [Jason Goettisheim, Sebastian Lucek]. Using ", " to seperate each name.
+    helpers: [String], // the format is same as producers
     // transcript: String,
     // story_image: String,
     date_produced: Date,
