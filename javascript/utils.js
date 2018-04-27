@@ -95,7 +95,7 @@ function readFromCsvAndPopulateStaffSchema() {
 				var last_name = split_name[2]
 			}
 
-			db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
+			// db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
 		}
 	});
 
@@ -110,7 +110,7 @@ function readFromCsvAndPopulateStaffSchema() {
 	readStream.pipe(parser);
 }
 
-// readFromCsvAndPopulateStaffSchema()
+readFromCsvAndPopulateStaffSchema()
 // readFromCsvAndPopulateStorySchema()
 
 // ############################################################

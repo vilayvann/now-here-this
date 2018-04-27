@@ -23,16 +23,16 @@ process.on('SIGINT', function() {
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
 
 var story_schema = new mongoose.Schema({
-    story_title: String, // story folder name
+	story_id: String, //story folder name, for example, aqua_life_central
+    story_title: String, // story real name, for example, aqua life central
     // audio_filename: String,
-    producer_first_name: String,
-    producer_last_name: String,
+    producers: [String], // for example, [Jason Goettisheim, Sebastian Lucek]. Using ", " to seperate each name.
     // transcript: String,
     // story_image: String,
-    date_produced: String,
-    keywords_in_transcript: [ String ],
+    date_produced: Date,
+    // keywords_in_transcript: [ String ], // implement later
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
-    // issue_name: String, 
+    issue_name: String, 
     meta: {
         views: Number, // optional
         shares: Number // optional
