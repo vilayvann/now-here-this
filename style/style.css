@@ -97,7 +97,7 @@ html, body {
 }
 
 .headers {
-  font-family: "Snell Roundhand", cursive;
+  font-family: "Avenir Next", cursive;
   height: 70px;
   margin: 20px 0px 20px 0px;
 }
@@ -111,10 +111,10 @@ html, body {
 .header-span {
   display: inline-block;
   width: 500px;
-  line-height: 60px;
+  line-height: 30px;
   background-color: white;
-  letter-spacing: 2px;
-  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
 }
 
 .story-images {
@@ -123,17 +123,21 @@ html, body {
   margin-bottom: 10px;
 }
 
-.issue {
-  height: 150px;
-  background-color: #324369;
+.stories {
   margin: 20px 0px;
 }
 
+.issue {
+  height: 150px;
+  margin: 20px 0px 50px 0px;
+  border: 2px solid black;
+}
+
 .issue-text {
-  font-family: "Snell Roundhand", cursive;
+  font-family: "Avenir Next", cursive;
   font-size: 60px;
   line-height: 150px;
-  color: white;
+
 }
 
 .announcements {
