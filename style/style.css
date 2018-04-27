@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Josefin+Sans|Muli');
 body {
   font-family: 'Libre Franklin';
 }
 
 nav {
   background-color: black;
+  font-family: 'Josefin Sans';
 }
 
 li {
@@ -97,9 +98,8 @@ html, body {
 }
 
 .headers {
-  font-family: "Avenir Next", cursive;
-  height: 70px;
-  margin: 20px 0px 20px 0px;
+  font-family: 'Josefin Sans', 'Avenir Next', 'Helvetica';
+  margin: 40px 0px 20px 0px;
 }
 
 .header-text {
@@ -134,7 +134,7 @@ html, body {
 }
 
 .issue-text {
-  font-family: "Avenir Next", cursive;
+  font-family: 'Josefin Sans', 'Avenir Next', 'Helvetica';
   font-size: 60px;
   line-height: 150px;
 

@@ -22,11 +22,11 @@ var story_schema = new mongoose.Schema({
     producer_last_name: String,
     date_produced: String,
     keywords_in_transcript: [ String ],
-    issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
+    issue_id: Number, 
     issue_name: String,
     meta: {
-        views: Number, // optional
-        shares: Number // optional
+        views: Number, 
+        shares: Number 
     }
 });
 
