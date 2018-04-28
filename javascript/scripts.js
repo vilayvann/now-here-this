@@ -10,7 +10,7 @@ function changeDirNames() {
 
 	// Make all directory names in the correct format.
 	for (i = 1; i < dir_list.length; i++) {
-		var string = dir_list[i].toLowerCase().replace('../stories/', '').replace(/ /g, '-').replace(/[^\w\s-]/g, '');
+		var string = dir_list[i].toLowerCase().replace('../stories/', '').replace('-', '_').replace(/[^\w\s-]/g, '');
 
 		// Rename story folder names.
 		fs.rename(dir_list[i], '../stories/' + string, function (err) {
@@ -46,9 +46,10 @@ function changeFileNames() {
 			var extension = getFileExtension(file_list[j]).toLowerCase()
 			// Get the pure folder name
 			var newname = string.replace('../stories/', '').replace('/', '')
+			// console.log(extension);
 			
 			// Rename each file name in the folder as foldername.extension
-			fs.rename(string + file_list[j], string + newname + '.' + extension, function (err) {
+			fs.rename(string + file_list[j], string + newname + extension, function (err) {
 				if (err) throw err;
 				console.log('renamed file complete')
 			})
