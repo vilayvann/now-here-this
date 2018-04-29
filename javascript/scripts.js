@@ -10,7 +10,7 @@ function changeDirNames() {
 
 	// Make all directory names in the correct format.
 	for (i = 1; i < dir_list.length; i++) {
-		var string = dir_list[i].toLowerCase().replace('../stories/', '').replace('-', '_').replace(/[^\w\s-]/g, '');
+		var string = dir_list[i].toLowerCase().replace('../stories/', '').replace(/-/g, '_').replace(/[^\w\s-]/g, '');
 
 		// Rename story folder names.
 		fs.rename(dir_list[i], '../stories/' + string, function (err) {
