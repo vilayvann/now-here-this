@@ -18,7 +18,7 @@ mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347
 
 var story_schema = new mongoose.Schema({
 	story_id: String, //story folder name, for example, aqua_life_central
-    // story_name: String, // story real name, for example, aqua life central, or we could format the story name from frony end
+    story_name: String, // story real name, for example, aqua life central, or we could format the story name from frony end
     producers: [String], // for example, [Jason Goettisheim, Sebastian Lucek]. Using ", " to seperate each name.
     helpers: [String], // the format is same as producers
     description: String,
@@ -53,8 +53,7 @@ app.get('/index.html', function(req, res){
     Story.find({}, function(err, data){
         var stories = "";
         for (var i = 0; i < data.length; i++) {
-            var storyName = data[i].story_id.split('_').join(' ');
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
         }
         res.render('index.html', {stories: stories});
     }).limit(4).sort({date_produced: -1});
@@ -75,8 +74,8 @@ app.get('/archive.html', function(req, res){
             if (i % 4 == 0) {
                 stories += "<div class='row'>";
             }
-            var storyName = data[i].story_id.split('_').join(' ');
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
+            // var storyName = data[i].story_id.split('_').join(' ');
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
@@ -127,8 +126,8 @@ app.get('/:storyName', function(req, res){
                                 if (i % 4 == 0) {
                                     stories += "<div class='row'>";
                                 }
-                                var storyName = data2[i].story_id.split('_').join(' ');
-                                stories += "<div class='col-3'><div class='stories'><a href='/" + data2[i].story_id + "'><img src='../stories/" + data2[i].story_id + "/" + data2[i].story_id + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
+                                // var storyName = data2[i].story_id.split('_').join(' ');
+                                stories += "<div class='col-3'><div class='stories'><a href='/" + data2[i].story_id + "'><img src='../stories/" + data2[i].story_id + "/" + data2[i].story_id + ".jpg' class='story-images'></a><h6>" + data2[i].story_name + "</h6></div></div>"
                                 if (i % 4 == 3 || i == data2.length - 1) {
                                     stories += "</div>";
                                 }
@@ -139,8 +138,8 @@ app.get('/:storyName', function(req, res){
                     });
                 });
         } else {
-            var storyNameParsed = storyName.split('_').join(' ');
-            res.render('story-page.html', {storyName: storyNameParsed, storyPath: storyName,
+            // var storyNameParsed = storyName.split('_').join(' ');
+            res.render('story-page.html', {storyName: data.story_name, storyPath: storyName,
                                        producers: data.producers, intro: data.description, music: data.music_credit})
         }
 
