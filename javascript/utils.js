@@ -60,7 +60,6 @@ function readFromCsvAndPopulateStorySchema() {
 			} else {
 				var date_produced = record.year + "-" + record.month + "-" + record.day
 			}
-
 			// Convert story_id to regular story name.
 			// Handle edge cases.
 			var story_name = record.story_id.split('_').join(' ');

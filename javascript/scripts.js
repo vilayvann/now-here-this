@@ -24,7 +24,7 @@ function changeStaffPhotoNames() {
 	var file_list = fs.readdirSync("../staff/")
 	for (j = 0; j < file_list.length; j++) {
 		var extension = getFileExtension(file_list[j])
-		var newname = file_list[j].toLowerCase().replace('nht ', '').replace(/-/g, ' ').replace(extension, '.jpg')
+		var newname = file_list[j].toLowerCase().replace('nht ', '').replace(' cropped', '').replace(/-/g, ' ').replace(extension, '.jpg')
 		// console.log(newname)
 		fs.rename('../staff/' + file_list[j], '../staff/' + newname, function (err) {
 			if (err) throw err;
