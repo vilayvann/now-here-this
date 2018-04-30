@@ -107,22 +107,14 @@ app.get('/staff.html', function(req, res){
         }
         res.render('staff.html', {staff: staff});
     });
-
 });
 
-app.get('/subscribe.html', function(req, res){
-    res.render('subscribe.html');
-});
-
-
-app.get('/stories/:storyName', function(req, res){
+app.get('/:storyName', function(req, res){
     var storyName = req.params.storyName;
     Story.findOne({story_id: storyName}, function(err, data){
         if (data == null) {
             console.log(storyName);
             var staffName = storyName;
-                // var arr = staffName.split('-');
-
                 Staff.find({name: staffName}, function(err, data){
                     if (data.length < 1) {
                         res.redirect('/index.html');
@@ -132,7 +124,6 @@ app.get('/stories/:storyName', function(req, res){
                     var nameLower = staffName.toLowerCase();
                     Story.find({producers: name}, function(err, data2){
                         var stories = "";
-                        // console.log(data2);
                         if (data2.length > 0) {
                             var stories = "<div class='row headers'><div class='col-12'><h3 class='header-text'><span class='header-span'>Stories</span></h3></div></div>";
                             for (var i = 0; i < data2.length; i++) {
@@ -152,7 +143,6 @@ app.get('/stories/:storyName', function(req, res){
                 });
         } else {
             var storyNameParsed = storyName.split('_').join(' ');
-            // console.log(data.m)
             res.render('story-page.html', {storyName: storyNameParsed, storyPath: storyName,
                                        producers: data.producers, intro: data.description, music: data.music_credit})
         }
