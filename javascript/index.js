@@ -57,7 +57,7 @@ app.get('/index.html', function(req, res){
             stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
         }
         res.render('index.html', {stories: stories});
-    }).limit(4);
+    }).limit(4).sort({date_produced: -1});
 });
 
 app.get('/overview.html', function(req, res){
@@ -82,7 +82,7 @@ app.get('/archive.html', function(req, res){
             }
         }
         res.render('archive.html', {stories: stories});
-    });
+    }).sort({date_produced: -1});
 });
 
 app.get('/issues.html', function(req, res){
