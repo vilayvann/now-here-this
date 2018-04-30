@@ -83,16 +83,16 @@ function readFromCsvAndPopulateStaffSchema() {
 
 	parser.on('readable', function() {
 		while (record = parser.read()) {
-			var split_name = record.name.split(" ");
-			if (split_name.length == 2) {
-				var first_name = split_name[0]
-				var last_name = split_name[1]
-			} else {
-				var first_name = split_name[0] + " " + split_name[1]
-				var last_name = split_name[2]
-			}
+			// var split_name = record.name.split(" ");
+			// if (split_name.length == 2) {
+			// 	var first_name = split_name[0]
+			// 	var last_name = split_name[1]
+			// } else {
+			// 	var first_name = split_name[0] + " " + split_name[1]
+			// 	var last_name = split_name[2]
+			// }
 
-			// db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
+			// db.populateStaffSchema(record.Name, record.Role, parseInt(record.Year), record.Bio)
 		}
 	});
 

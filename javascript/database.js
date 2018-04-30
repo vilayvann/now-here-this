@@ -30,7 +30,7 @@ var story_schema = new mongoose.Schema({
     description: String,
     illustrator_credit: String,
     music_credit: String,
-    date_produced: String,
+    date_produced: Date,
     // keywords_in_transcript: [ String ], // implement later
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
     // issue_name: String, 
@@ -43,10 +43,9 @@ var story_schema = new mongoose.Schema({
 var Story = mongoose.model('Story', story_schema);
 
 var staff_schema = new mongoose.Schema({
-    first_name: String,
-    last_name: String,
+    name: String,
     role: String,
-    year: String,
+    year: Number,
     bio: String
 });
 
@@ -81,10 +80,9 @@ function populateInitial(story_id, producers, helpers, description, illustrator_
     // mongoose.connection.close();
 }
 
-function populateStaffSchema(first, last, role, year, bio) {
+function populateStaffSchema(name, role, year, bio) {
     var staff = new Staff({
-        first_name: first,
-        last_name: last,
+        name: name,
         role: role,
         year: year,
         bio: bio
