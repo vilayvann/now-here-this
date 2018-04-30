@@ -130,33 +130,34 @@ app.get('/stories/:storyName', function(req, res){
                     }
                     var name = data[0].name;
                     var nameLower = staffName.toLowerCase();
-                     if (data[0].role == 'Producer'){
-                         Story.find({producer_first_name: arr[0], producer_last_name: arr[1]}, function(err, data2){
-                             var stories = "";
-                             if (data2.length > 0) {
-                                 var stories = "<div class='row headers'><div class='col-12'><h3 class='header-text'><span class='header-span'>Stories</span></h3></div></div>";
-                                 for (var i = 0; i < data2.length; i++) {
-                                     if (i % 4 == 0) {
-                                         stories += "<div class='row'>";
-                                     }
-                                     stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_id + "'><img src='../stories/" + data2[i].story_id + "/" + data2[i].story_id + ".jpg' class='story-images'></a><h6>" + data2[i].story_id + "</h6></div></div>"
-                                     if (i % 4 == 3 || i == data2.length - 1) {
-                                         stories += "</div>";
-                                     }
-                                 }
-                                 stories += "</div>";
-                             }
-                             res.render('staff-page.html', {staffName: nameLower, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: stories});
-                         });
+                     // if (data[0].role == 'Producer'){
+                     //     Story.find({producer_first_name: arr[0], producer_last_name: arr[1]}, function(err, data2){
+                     //         var stories = "";
+                     //         if (data2.length > 0) {
+                     //             var stories = "<div class='row headers'><div class='col-12'><h3 class='header-text'><span class='header-span'>Stories</span></h3></div></div>";
+                     //             for (var i = 0; i < data2.length; i++) {
+                     //                 if (i % 4 == 0) {
+                     //                     stories += "<div class='row'>";
+                     //                 }
+                     //                 stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_id + "'><img src='../stories/" + data2[i].story_id + "/" + data2[i].story_id + ".jpg' class='story-images'></a><h6>" + data2[i].story_id + "</h6></div></div>"
+                     //                 if (i % 4 == 3 || i == data2.length - 1) {
+                     //                     stories += "</div>";
+                     //                 }
+                     //             }
+                     //             stories += "</div>";
+                     //         }
+                     //         res.render('staff-page.html', {staffName: nameLower, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: stories});
+                     //     });
 
-                     } else {
+                     // } else {
                         res.render('staff-page.html', {staffName: nameLower, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: ""});
-                     }
+                     // }
                 });
         } else {
             var storyNameParsed = storyName.split('_').join(' ');
+            // console.log(data.m)
             res.render('story-page.html', {storyName: storyNameParsed, storyPath: storyName,
-                                       firstName: data.producer_first_name, lastName: data.producer_last_name})
+                                       producers: data.producers, intro: data.description, music: data.music_credit})
         }
 
     });
