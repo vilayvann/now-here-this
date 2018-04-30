@@ -17,24 +17,27 @@ app.set('view engine', 'html');
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
 
 var story_schema = new mongoose.Schema({
-    story_title: String,
-    producer_first_name: String,
-    producer_last_name: String,
+	story_id: String, //story folder name, for example, aqua_life_central
+    // story_name: String, // story real name, for example, aqua life central, or we could format the story name from frony end
+    producers: [String], // for example, [Jason Goettisheim, Sebastian Lucek]. Using ", " to seperate each name.
+    helpers: [String], // the format is same as producers
+    description: String,
+    illustrator_credit: String,
+    music_credit: String,
     date_produced: String,
-    keywords_in_transcript: [ String ],
-    issue_id: Number, 
-    issue_name: String,
+    // keywords_in_transcript: [ String ], // implement later
+    issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
+    // issue_name: String, 
     meta: {
-        views: Number, 
-        shares: Number 
+        views: Number, // optional
+        shares: Number // optional
     }
 });
 
 var Story = mongoose.model('Story', story_schema);
 
 var staff_schema = new mongoose.Schema({
-    first_name: String,
-    last_name: String,
+    name: String,
     role: String,
     year: Number,
     bio: String
@@ -50,8 +53,8 @@ app.get('/index.html', function(req, res){
     Story.find({}, function(err, data){
         var stories = "";
         for (var i = 0; i < data.length; i++) {
-            var storyName = data[i].story_title.split('-').join(' ');
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
+            var storyName = data[i].story_id.split('_').join(' ');
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
         }
         res.render('index.html', {stories: stories});
     }).limit(4);
@@ -72,8 +75,8 @@ app.get('/archive.html', function(req, res){
             if (i % 4 == 0) {
                 stories += "<div class='row'>";
             }
-            var storyName = data[i].story_title.split('-').join(' ');
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
+            var storyName = data[i].story_id.split('_').join(' ');
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
@@ -93,9 +96,11 @@ app.get('/staff.html', function(req, res){
             if (i % 4 == 0) {
                 staff += "<div class='row'>";
             }
-            var path = data[i].first_name + "-" + data[i].last_name;
+            // console.log(data[i].role);
+            var path = data[i].name;
+            // console.log(path);
             var lower = path.toLowerCase();
-            staff += "<div class='col-3'><div class='stories'><a href='/" + path + "'><img src='../staff/" + lower + ".jpg' class='story-images'></a><h6>" + data[i].first_name + " " + data[i].last_name + "</h6></div></div>"
+            staff += "<div class='col-3'><div class='stories'><a href='/" + path + "'><img src='../staff/" + lower + ".jpg' class='story-images'></a><h6>" + data[i].name + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 staff += "</div>";
             }
@@ -112,17 +117,18 @@ app.get('/subscribe.html', function(req, res){
 
 app.get('/:storyName', function(req, res){
     var storyName = req.params.storyName;
-    Story.findOne({story_title: storyName}, function(err, data){
+    Story.findOne({story_id: storyName}, function(err, data){
         if (data == null) {
+            console.log(storyName);
             var staffName = storyName;
-                var arr = staffName.split('-');
+                // var arr = staffName.split('-');
 
-                Staff.find({first_name: arr[0], last_name: arr[1]}, function(err, data){
+                Staff.find({name: staffName}, function(err, data){
                     if (data.length < 1) {
                         res.redirect('/index.html');
                         return;
                     }
-                    var name = data[0].first_name + ' ' + data[0].last_name;
+                    var name = data[0].name;
                     var nameLower = staffName.toLowerCase();
                      if (data[0].role == 'Producer'){
                          Story.find({producer_first_name: arr[0], producer_last_name: arr[1]}, function(err, data2){
@@ -133,7 +139,7 @@ app.get('/:storyName', function(req, res){
                                      if (i % 4 == 0) {
                                          stories += "<div class='row'>";
                                      }
-                                     stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_title + "'><img src='../stories/" + data2[i].story_title + "/" + data2[i].story_title + ".jpg' class='story-images'></a><h6>" + data2[i].story_title + "</h6></div></div>"
+                                     stories += "<div class='col-3'><div class='stories'><a href='/stories/" + data2[i].story_id + "'><img src='../stories/" + data2[i].story_id + "/" + data2[i].story_id + ".jpg' class='story-images'></a><h6>" + data2[i].story_id + "</h6></div></div>"
                                      if (i % 4 == 3 || i == data2.length - 1) {
                                          stories += "</div>";
                                      }
@@ -148,7 +154,7 @@ app.get('/:storyName', function(req, res){
                      }
                 });
         } else {
-            var storyNameParsed = storyName.split('-').join(' ');
+            var storyNameParsed = storyName.split('_').join(' ');
             res.render('story-page.html', {storyName: storyNameParsed, storyPath: storyName,
                                        firstName: data.producer_first_name, lastName: data.producer_last_name})
         }
