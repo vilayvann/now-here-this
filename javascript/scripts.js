@@ -62,8 +62,6 @@ function changeTitle(string) {
 }
 
 
-
-
 function convertPdfToJson() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
 	var transcript = []
