@@ -31,12 +31,24 @@ process.on('SIGINT', function() {
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
 
 var story_schema = new mongoose.Schema({
+<<<<<<< HEAD
     story_id: String, // story-id
     story_title: String, // "Story Title"
     producers: [ String ]
     producer_helpers: [ String ]
     date_produced: Date,
     keywords_in_transcript: [ String ],
+=======
+	story_id: String, //story folder name, for example, aqua_life_central
+    // story_name: String, // story real name, for example, aqua life central, or we could format the story name from frony end
+    producers: [String], // for example, [Jason Goettisheim, Sebastian Lucek]. Using ", " to seperate each name.
+    helpers: [String], // the format is same as producers
+    description: String,
+    illustrator_credit: String,
+    music_credit: String,
+    date_produced: String,
+    // keywords_in_transcript: [ String ], // implement later
+>>>>>>> db767c8e921554f6be40ed90c3fe0f2bc7897df9
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
     issue_name: String, 
     meta: {
@@ -65,12 +77,16 @@ function populateDatabase(story_title, audio_filename, producer_first, producer_
 }
 
 // populate data extracted from stories.csv, to store in database.
-function populateInitial(story_title, producer_first, producer_last, date_produced, issue_id) {
+function populateInitial(story_id, producers, helpers, description, illustrator_credit, music_credit, date_produced, issue_id) {
 
     var story = new Story({
-        story_title: story_title, 
-        producer_first_name: producer_first,
-        producer_last_name: producer_last,
+        story_id: story_id, 
+        // story_name: story_name,
+        producers: producers,
+        helpers: helpers,
+        description: description,
+        illustrator_credit: illustrator_credit,
+        music_credit: music_credit,
         date_produced: date_produced,
         issue_id: issue_id
     });

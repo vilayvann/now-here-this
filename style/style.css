@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Josefin+Sans|Muli');
 body {
   font-family: 'Libre Franklin';
 }
 
 nav {
   background-color: black;
+  font-family: 'Josefin Sans';
 }
 
 li {
@@ -28,7 +29,7 @@ footer {
   text-align: center;
 }
 
-.dropdown-content {
+.dropdown-content, .dropdown-content-2 {
   display: none;
   position: absolute;
   background-color: black;
@@ -38,12 +39,12 @@ footer {
   padding: 10px;
 }
 
-.dropdown-content a {
+.dropdown-content a, .dropdown-content-2 a {
   text-decoration: none;
   color: grey;
 }
 
-.dropdown-content a:hover{
+.dropdown-content a:hover, .dropdown-content-2 a:hover{
   color: #b5b5b5;
 }
 
@@ -53,6 +54,10 @@ footer {
 
 .dropdown-active {
   color: white;
+}
+
+.dropdown-2:hover .dropdown-content-2 {
+    display: block;
 }
 
 .icons {
@@ -86,15 +91,15 @@ html, body {
 
 .body {
   text-align: center;
-  min-height: 90%;
+  min-height: 100%;
   margin: 0 auto -100px;
+  margin-top: 100px;
   padding-bottom: 100px;
 }
 
 .headers {
-  font-family: "Snell Roundhand", cursive;
-  height: 70px;
-  margin: 20px 0px 20px 0px;
+  font-family: 'Josefin Sans', 'Avenir Next', 'Helvetica';
+  margin: 40px 0px 20px 0px;
 }
 
 .header-text {
@@ -106,33 +111,66 @@ html, body {
 .header-span {
   display: inline-block;
   width: 500px;
-  line-height: 60px;
+  line-height: 30px;
   background-color: white;
-  letter-spacing: 2px;
-  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
 }
 
 .story-images {
-  width: 80%;
+  width: 170px;
   height: 170px;
-  border-radius: 7px;
   margin-bottom: 10px;
+}
+
+.stories {
+  margin: 20px 0px;
 }
 
 .issue {
   height: 150px;
-  background-color: #324369;
-  margin: 20px 0px;
+  margin: 20px 0px 50px 0px;
+  border: 2px solid black;
 }
 
 .issue-text {
-  font-family: "Snell Roundhand", cursive;
+  font-family: 'Josefin Sans', 'Avenir Next', 'Helvetica';
   font-size: 60px;
   line-height: 150px;
-  color: white;
+
 }
 
 .announcements {
   padding: 3px;
 
+}
+
+.staff-photo {
+  width: 80%;
+  height: 500px;
+}
+
+.staff-intro {
+  text-align: left;
+  padding: 20px;
+}
+
+.story-page-photo {
+  width: 170px;
+  height: 170px;
+}
+
+.story-intro {
+  text-align: left;
+  padding: 20px;
+}
+
+.transcript {
+  text-align: left;
+  padding: 30px;
+}
+
+.transcript iframe {
+    width: 80%;
+    height: 600px;
 }

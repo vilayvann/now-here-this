@@ -10,29 +10,32 @@
     <script defer src="style/fontawesome-all.js"></script>
   </head>
 
-
   <body>
-    <nav class="navbar navbar-inverse navbar-toggleable-sm">
+    <nav class="navbar navbar-inverse navbar-toggleable-sm fixed-top">
       <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="navbar-nav mr-auto">
-            <li class='nav-item'><a class="nav-link" href="index.html">(Logo)</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown" href="overview.html">About</a>
+            <li class='nav-item'><a class="nav-link" href="index.html">(LOGO)</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+            <li class="nav-item dropdown"><a class="nav-link" href="overview.html">ABOUT</a>
               <div class='dropdown-content'>
-                <a href='overview.html'>Overview</a>
-                <a href='staff.html'>Staff</a>
-                <a href='subscribe.html'>Subscribe</a>
+                <a href='overview.html'>OVERVIEW</a><br>
+                <a href='staff.html'>STAFF</a>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item dropdown-2"><a class="nav-link" href="archive.html">ARCHIVE</a>
+              <div class='dropdown-content-2'>
+                <a href='archive.html'>STORIES</a><br>
+                <a href='issues.html'>ISSUES</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class='nav-item search-li'><input type="text" class='search-input' placeholder="Search for stories"></li>
+            <li class='nav-item search-li'><input type="text" class='search-input'></li>
             <li class='nav-item icons search-icon'><i class='fas fa-search'></i></li>
             <li class='nav-item icons'><i class='fab fa-facebook'></i></li>
             <li class='nav-item icons'><i class='fab fa-twitter'></i></li>
@@ -51,16 +54,15 @@
       </div>
       <div class='row'>
         <div class="col-4">
-<!--          <img src="../stories/chapman/chapman.jpg" class='story-images'/>-->
           <img src="../stories/{{storyPath}}/{{storyPath}}.jpg" class='story-images'/>
         </div>
         <div class="col-8 story-intro">
-          <p>Produced by: {{firstName}} {{lastName}}</p>
-          <p>{{intro}}</p>
           <audio controls>
             <source src="../stories/{{storyPath}}/{{storyPath}}.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
+          <p>Produced by: {{firstName}} {{lastName}}</p>
+          <p>{{intro}}</p>
         </div>
       </div>
       <div class='row headers'>
@@ -70,7 +72,7 @@
       </div>
       <div class='row'>
         <div class='col-12 transcript'>
-          <center><iframe src="../stories/{{storyPath}}/{{storyPath}}.pdf" frameborder="0" width='600px' height='600px'></iframe></center>  
+          <center><iframe src="../stories/{{storyPath}}/{{storyPath}}.pdf" frameborder="0" width='600px' height='600px'></iframe></center>
         </div>
       </div>
     </div>

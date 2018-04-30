@@ -48,22 +48,19 @@ function getFilesInDir(dir) {
 
 // DO NOT RUN THIS FOR FUN OR FOR TESTING.
 function readFromCsvAndPopulateStorySchema() {
-	var readStream = fs.createReadStream('../fake_stories.csv');
+	var readStream = fs.createReadStream('../stories.csv');
 	var parser = csv.parse({columns:true});
 
 	parser.on('readable', function() {
 		while (record = parser.read()) {
-			// console.log('aaaaaaaa' + record.producer_first_name)
+			var split_producer = record.producers.split(", ")
+			var split_helper = record.helpers.split(', ')
 			if (record.day === '') {
 				var date_produced = record.year + "-" + record.month + "-01"
-				// console.log('ddddd' + date_produced)
 			} else {
 				var date_produced = record.year + "-" + record.month + "-" + record.day
-				// console.log('ddddd' + date_produced)
 			}
-			
-			db.populateInitial(record.story_title, record.producer_first_name, record.producer_last_name, date_produced,0)
-			// db.populateInitial(record.story_title, record.producer_first_name, record.producer_last_name, date_produced,0)
+			// db.populateInitial(record.story_id, split_producer, split_helper, record.description, record.illustrator_credit, record.music_credit, new Date(date_produced), record.issue)
 
 		}
 	});
@@ -95,7 +92,7 @@ function readFromCsvAndPopulateStaffSchema() {
 				var last_name = split_name[2]
 			}
 
-			db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
+			// db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
 		}
 	});
 

@@ -22,11 +22,11 @@ var story_schema = new mongoose.Schema({
     producer_last_name: String,
     date_produced: String,
     keywords_in_transcript: [ String ],
-    issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
+    issue_id: Number, 
     issue_name: String,
     meta: {
-        views: Number, // optional
-        shares: Number // optional
+        views: Number, 
+        shares: Number 
     }
 });
 
@@ -50,7 +50,8 @@ app.get('/index.html', function(req, res){
     Story.find({}, function(err, data){
         var stories = "";
         for (var i = 0; i < data.length; i++) {
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + data[i].story_title + "</h6></div></div>"
+            var storyName = data[i].story_title.split('-').join(' ');
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
         }
         res.render('index.html', {stories: stories});
     }).limit(4);
@@ -71,7 +72,8 @@ app.get('/archive.html', function(req, res){
             if (i % 4 == 0) {
                 stories += "<div class='row'>";
             }
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + data[i].story_title + "</h6></div></div>"
+            var storyName = data[i].story_title.split('-').join(' ');
+            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_title + "'><img src='../stories/" + data[i].story_title + "/" + data[i].story_title + ".jpg' class='story-images'></a><h6>" + storyName + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
@@ -80,8 +82,8 @@ app.get('/archive.html', function(req, res){
     });
 });
 
-app.get('/issue.html', function(req, res){
-    res.render('issue.html');
+app.get('/issues.html', function(req, res){
+    res.render('issues.html');
 });
 
 app.get('/staff.html', function(req, res){
@@ -146,7 +148,8 @@ app.get('/:storyName', function(req, res){
                      }
                 });
         } else {
-            res.render('story-page.html', {storyName: storyName, storyPath: storyName,
+            var storyNameParsed = storyName.split('-').join(' ');
+            res.render('story-page.html', {storyName: storyNameParsed, storyPath: storyName,
                                        firstName: data.producer_first_name, lastName: data.producer_last_name})
         }
 
