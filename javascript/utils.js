@@ -60,8 +60,19 @@ function readFromCsvAndPopulateStorySchema() {
 			} else {
 				var date_produced = record.year + "-" + record.month + "-" + record.day
 			}
-			// db.populateInitial(record.story_id, split_producer, split_helper, record.description, record.illustrator_credit, record.music_credit, new Date(date_produced), record.issue)
 
+			// Convert story_id to regular story name.
+			// Handle edge cases.
+			var story_name = record.story_id.split('_').join(' ');
+			if (story_id == '5am_rockefeller_library')
+				story_name = '5am, rockefeller library'
+			if (story_id == 'dont_drink_the_water')
+				story_name = "don't drink the water"
+			if (story_id == 'mens_story_project')
+				story_name = "men's story project"
+			if (story_id == 'whats_really_scary')
+				story_name = "what's really scary"
+			db.populateInitial(record.story_id, split_producer, story_name, split_helper, record.description, record.illustrator_credit, record.music_credit, new Date(date_produced), record.issue)
 		}
 	});
 
@@ -83,16 +94,16 @@ function readFromCsvAndPopulateStaffSchema() {
 
 	parser.on('readable', function() {
 		while (record = parser.read()) {
-			var split_name = record.name.split(" ");
-			if (split_name.length == 2) {
-				var first_name = split_name[0]
-				var last_name = split_name[1]
-			} else {
-				var first_name = split_name[0] + " " + split_name[1]
-				var last_name = split_name[2]
-			}
+			// var split_name = record.name.split(" ");
+			// if (split_name.length == 2) {
+			// 	var first_name = split_name[0]
+			// 	var last_name = split_name[1]
+			// } else {
+			// 	var first_name = split_name[0] + " " + split_name[1]
+			// 	var last_name = split_name[2]
+			// }
 
-			// db.populateStaffSchema(first_name, last_name, record.role, parseInt(record.year), record.bio)
+			// db.populateStaffSchema(record.Name, record.Role, parseInt(record.Year), record.Bio)
 		}
 	});
 
@@ -108,7 +119,7 @@ function readFromCsvAndPopulateStaffSchema() {
 }
 
 // readFromCsvAndPopulateStaffSchema()
-// readFromCsvAndPopulateStorySchema()
+readFromCsvAndPopulateStorySchema()
 
 // ############################################################
 exports.getDirectoriesRecursive = getDirectoriesRecursive
