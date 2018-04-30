@@ -33,7 +33,7 @@ mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347
 var story_schema = new mongoose.Schema({
 	story_id: String, //story folder name, for example, aqua_life_central
     story_name: String, // Needed to handle edge cases, with punctuation.    
-    producers: [String], // for example, [Jason Goettisheim, Sebastian Lucek]. Using ", " to seperate each name.
+    producers: [String], // Using ", " to seperate each name.
     helpers: [String], // the format is same as producers
     description: String,
     illustrator_credit: String,
@@ -42,6 +42,7 @@ var story_schema = new mongoose.Schema({
     keywords_in_transcript: [ String ], // implement later
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
     issue_name: String, 
+    transcript: Number,
     meta: {
         views: Number, // optional
         shares: Number // optional
@@ -68,7 +69,7 @@ function populateDatabase(story_title, audio_filename, producer_first, producer_
 }
 
 // populate data extracted from stories.csv, to store in database.
-function populateInitial(story_id, story_name, producers, helpers, description, illustrator_credit, music_credit, date_produced, issue_id) {
+function populateInitial(story_id, story_name, producers, helpers, description, illustrator_credit, music_credit, date_produced, issue_id, transcript) {
 
     var story = new Story({
         story_id: story_id, 
@@ -79,7 +80,8 @@ function populateInitial(story_id, story_name, producers, helpers, description, 
         illustrator_credit: illustrator_credit,
         music_credit: music_credit,
         date_produced: date_produced,
-        issue_id: issue_id
+        issue_id: issue_id,
+        transcript: transcript
     });
     story.save(function(err, data) {
         if (err) return console.error(err);
