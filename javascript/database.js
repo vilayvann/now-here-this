@@ -1,3 +1,11 @@
+
+// title,producers,helpers,year,month
+// aqua-life,ari snider, Mitchell johnson, 
+// aqua-life, Ari Snider, "Mitchell Johnson"]', '["winnie pooh"]',2010,08,10
+// csv.producers --> "Ari Snider", "Mitchell Johnson"
+// [" ", " "]
+
+
 var utils = require('./utils.js')
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -23,16 +31,14 @@ process.on('SIGINT', function() {
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
 
 var story_schema = new mongoose.Schema({
-    story_title: String, // story folder name
-    // audio_filename: String,
-    producer_first_name: String,
-    producer_last_name: String,
-    // transcript: String,
-    // story_image: String,
-    date_produced: String,
+    story_id: String, // story-id
+    story_title: String, // "Story Title"
+    producers: [ String ]
+    producer_helpers: [ String ]
+    date_produced: Date,
     keywords_in_transcript: [ String ],
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
-    // issue_name: String, 
+    issue_name: String, 
     meta: {
         views: Number, // optional
         shares: Number // optional
@@ -42,8 +48,7 @@ var story_schema = new mongoose.Schema({
 var Story = mongoose.model('Story', story_schema);
 
 var staff_schema = new mongoose.Schema({
-    first_name: String,
-    last_name: String,
+    name: String, // e.g. "Mitchell Johnson"
     role: String,
     year: String,
     bio: String
