@@ -115,7 +115,7 @@ app.get('/subscribe.html', function(req, res){
 });
 
 
-app.get('/:storyName', function(req, res){
+app.get('/stories/:storyName', function(req, res){
     var storyName = req.params.storyName;
     Story.findOne({story_id: storyName}, function(err, data){
         if (data == null) {
@@ -162,4 +162,10 @@ app.get('/:storyName', function(req, res){
 
 
 
-app.listen(8080);
+var server = app.listen(8080, function(){
+  console.log('Server is listening on port 8080');
+});
+
+exports.closeServer = function(){
+  server.close();
+};
