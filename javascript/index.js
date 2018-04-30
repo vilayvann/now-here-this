@@ -112,6 +112,7 @@ app.get('/staff.html', function(req, res){
 app.get('/:storyName', function(req, res){
     var storyName = req.params.storyName;
     Story.findOne({story_id: storyName}, function(err, data){
+        console.log("DANG" + storyName)
         if (data == null) {
             console.log(storyName);
             var staffName = storyName;

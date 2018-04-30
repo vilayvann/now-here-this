@@ -60,7 +60,7 @@ function readFromCsvAndPopulateStorySchema() {
 			} else {
 				var date_produced = record.year + "-" + record.month + "-" + record.day
 			}
-			// db.populateInitial(record.story_id, split_producer, split_helper, record.description, record.illustrator_credit, record.music_credit, new Date(date_produced), record.issue)
+			db.populateInitial(record.story_id, split_producer, split_helper, record.description, record.illustrator_credit, record.music_credit, new Date(date_produced), record.issue)
 
 		}
 	});
@@ -108,7 +108,7 @@ function readFromCsvAndPopulateStaffSchema() {
 }
 
 // readFromCsvAndPopulateStaffSchema()
-// readFromCsvAndPopulateStorySchema()
+readFromCsvAndPopulateStorySchema()
 
 // ############################################################
 exports.getDirectoriesRecursive = getDirectoriesRecursive
