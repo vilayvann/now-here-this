@@ -8,10 +8,10 @@ var app = express();
 
 app.use(bp.urlencoded({extended:false}));
 app.use(bp.json());
-app.use(express.static('../'));
+app.use(express.static('./'));
 
 app.engine('html', engines.hogan);
-app.set('views', __dirname + '/../templates');
+app.set('views', __dirname + '/templates');
 app.set('view engine', 'html');
 
 mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
@@ -96,9 +96,7 @@ app.get('/staff.html', function(req, res){
             if (i % 4 == 0) {
                 staff += "<div class='row'>";
             }
-            // console.log(data[i].role);
             var path = data[i].name;
-            // console.log(path);
             var lower = path.toLowerCase();
             staff += "<div class='col-3'><div class='stories'><a href='/" + path + "'><img src='../staff/" + lower + ".jpg' class='story-images'></a><h6>" + data[i].name + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
@@ -112,9 +110,7 @@ app.get('/staff.html', function(req, res){
 app.get('/:storyName', function(req, res){
     var storyName = req.params.storyName;
     Story.findOne({story_id: storyName}, function(err, data){
-        console.log("DANG" + storyName)
         if (data == null) {
-            console.log(storyName);
             var staffName = storyName;
                 Staff.find({name: staffName}, function(err, data){
                     if (data.length < 1) {

@@ -12,21 +12,10 @@ li {
   display: inline-block;
 }
 
-.dark {
-  background-color: black;
-  color: grey;
-}
-
-footer {
-  padding-left: 20px;
-}
-
-.footer-text {
-  line-height: 10px;
-}
-
-.middle {
-  text-align: center;
+.logo {
+  margin: -12px;
+  width: 40px; 
+  margin-right: 10px;
 }
 
 .dropdown-content, .dropdown-content-2 {
@@ -58,6 +47,10 @@ footer {
 
 .dropdown-2:hover .dropdown-content-2 {
     display: block;
+}
+
+a {
+  color: inherit;
 }
 
 .icons {
@@ -117,6 +110,16 @@ html, body {
   border-bottom: 2px solid black;
 }
 
+.logo-header-wrapper {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo-header {
+  width: 300px;
+  height: 300px;
+}
+
 .story-images {
   width: 170px;
   height: 170px;
@@ -160,9 +163,17 @@ html, body {
   height: 170px;
 }
 
+.story-images-wrapper {
+  padding-top: 20px;
+}
+
 .story-intro {
   text-align: left;
   padding: 20px;
+}
+
+.audio-player {
+  margin-bottom: 20px;
 }
 
 .transcript {
@@ -173,4 +184,21 @@ html, body {
 .transcript iframe {
     width: 80%;
     height: 600px;
+}
+
+.dark {
+  background-color: black;
+  color: grey;
+}
+
+footer {
+  padding-left: 20px;
+}
+
+.footer-text {
+  line-height: 10px;
+}
+
+.middle {
+  text-align: center;
 }
