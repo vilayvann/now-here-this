@@ -155,8 +155,9 @@ app.get('/:storyName', function(req, res){
                 });
         } else {
             var storyNameParsed = storyName.split('_').join(' ');
+            // console.log(data.m)
             res.render('story-page.html', {storyName: storyNameParsed, storyPath: storyName,
-                                       firstName: data.producer_first_name, lastName: data.producer_last_name})
+                                       producers: data.producers, intro: data.description, music: data.music_credit})
         }
 
     });
