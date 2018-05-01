@@ -17,16 +17,21 @@
   },
   "homepage": "https://github.com/vilayvann/now-here-this#readme",
   "dependencies": {
+    "array-unique": "^0.3.2",
     "body-parser": "^1.18.2",
     "consolidate": "^0.15.1",
     "csv": "^3.0.2",
     "express": "^4.16.3",
     "hogan.js": "^3.0.2",
+    "keyword-extractor": "0.0.15",
     "mongoose": "^5.0.15",
+    "natural": "^0.5.6",
     "pdf-parse": "^1.0.8",
     "pdf2json": "^1.1.7",
+    "pdfreader": "^0.2.5",
     "request": "^2.85.0",
-    "rnum": "^1.0.0"
+    "rnum": "^1.0.0",
+    "stemmer": "^1.0.2"
   },
   "devDependencies": {
     "jasmine": "^3.1.0"

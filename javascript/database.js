@@ -104,10 +104,30 @@ function populateStaffSchema(name, role, year, bio) {
     // mongoose.connection.close();
 }
 
-// TODO
-function updateDatabase() {
-    return
+// keywords is an array of words.
+function pushKeywordsToDatabase(story_id, keywords) {
+    // mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
+    // var query = { story_id: story_id };
+    // var new_values = { $set: {keywords_in_transcript: keywords} };
+
+    Story.findOne({"story_id": story_id}, function(err, story) {
+        story.keywords_in_transcript = keywords
+        story.save(function(err, data) {
+            if (err) return console.error(err);
+        });
+    })
+
+    // story.save(function(err, data) {
+    //     if (err) return console.error(err);
+    // });
+
+    // Story.findOneAndUpdate(query, new_values, function(err, res) {
+    //     if (err) throw err;
+    //     console.log("pushed keywords successfully")
+    // });
+    // mongoose.connection.close();
 }
 
 exports.populateInitial = populateInitial
 exports.populateStaffSchema = populateStaffSchema
+exports.pushKeywordsToDatabase = pushKeywordsToDatabase

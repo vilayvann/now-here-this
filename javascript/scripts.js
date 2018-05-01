@@ -1,9 +1,18 @@
 var utils = require('./utils.js')
+var db = require('./database.js')
+
 const fs = require('fs');
+var pdfreader = require('pdfreader');
+var stemmer = require('stemmer');
+var natural = require('natural');
+var keyword_extractor = require("keyword-extractor");
+var unique = require('array-unique');
+// var tm = require('text-miner');
+const pdf = require('pdf-parse');
+var path = require('path');
+
 // PDFParser = require('pdf2json');
 // let pdfParser = new PDFParser(this, 1);
-const pdf = require('pdf-parse');
-var path = require('path')
 
 function changeDirNames() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
@@ -62,7 +71,7 @@ function changeTitle(string) {
 }
 
 
-function convertPdfToJson() {
+function stemWordsFromPdfTranscript() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
 	var transcript = []
 	for (i = 1; i < dir_list.length; i++) {
@@ -73,21 +82,59 @@ function convertPdfToJson() {
 
 		if (file_list.indexOf(newname + '.pdf') != -1) {
 			var dataBuffer = fs.readFileSync(string + newname + '.pdf');
-			console.log('EXIST' + string)
+
+			// fs.readFile(string + newname + '.pdf', (err, pdfBuffer) => {
+			// 	new pdfreader.PdfReader().parseBuffer(pdfBuffer, function(err, data) {
+			// 		if (err)
+			// 	    callback(err);
+			// 	  else if (!data)
+			// 	    callback();
+			// 	  else if (data.text)
+			// 	    console.log(data.text);
+			// 		// First extract all keywords from the pdf transcript.
+			// 		var keywords = keyword_extractor.extract(data.text,{language:"english",
+	  //                                                   remove_digits: true,
+	  //                                                   return_changed_case:true,
+	  //                                                   remove_duplicates: true,
+	 	// 											});
+			// 		// Then, for every keyword stem it and remove all special characters.
+			// 		var stemmed_keywords = keywords.map(function(word) {
+			// 			return stemmer(word).replace(/[^\w\s]/gi, '');
+			// 		});
+
+			// 		// Make sure every word in the array is unique, and push to database.
+			// 		db.pushKeywordsToDatabase(newname, unique(stemmed_keywords));
+
+			// 	});
+			// 	console.log('EXIST')
+			// });
+			
 			// console.log(dataBuffer)
 			pdf(dataBuffer).then(function(data) {
 				// transcript.push(data.text)
 				// console.log(data.text);
 				// dict[newname] = data.text;
-				console.log('******************************')
-				console.log(data.text);
+
+				// First extract all keywords from the pdf transcript.
+				var keywords = keyword_extractor.extract(data.text,{language:"english",
+                                                    remove_digits: true,
+                                                    return_changed_case:true,
+                                                    remove_duplicates: true,
+ 												});
+				// Then, for every keyword stem it and remove all special characters.
+				var stemmed_keywords = keywords.map(function(word) {
+					return stemmer(word).replace(/[^\w\s]/gi, '');
+				});
+
+				// Make sure every word in the array is unique, and push to database.
+				db.pushKeywordsToDatabase(newname, unique(stemmed_keywords));
+
 			})
-		} else {
-			console.log(string)
-		}
-		console.log
+		} 
+		// else {
+		// 	console.log(string)
+		// }
 	}
-	console.log(transcript.length)
 }
 
 function getFileExtension(filename_str) {
@@ -98,9 +145,9 @@ function getFileExtension(filename_str) {
 
 // changeFileNames()
 
-// convertPdfToJson()
+stemWordsFromPdfTranscript()
 
-changeStaffPhotoNames()
+// changeStaffPhotoNames()
 
 // for (i in dict) {
 // 	console.log("Name: " + i)
