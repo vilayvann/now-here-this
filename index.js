@@ -27,6 +27,7 @@ var story_schema = new mongoose.Schema({
     date_produced: String,
     // keywords_in_transcript: [ String ], // implement later
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
+    transcript: Number,
     // issue_name: String, 
     meta: {
         views: Number, // optional
@@ -136,11 +137,26 @@ app.get('/:storyName', function(req, res){
                         }
                         res.render('staff-page.html', {staffName: nameLower, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: stories});
                     });
-                });
+                })
         } else {
+            var story_decription ="";
+            var music_credit="";
+            var transcript="";
+            if (data.description!="") { 
+                story_decription += "<div>Description: "+ data.description+"</div>"
+            } 
+            if (data.music_credit!="") {
+                music_credit  += "<div>Music Credit: " + data.music_credit+ "</div>"
+            }
+            if (data.transcript==1) {
+                transcript += "<center><iframe src='../stories/"+ data.story_id+"/"+data.story_id +".pdf' frameborder='0' width='600px' height='600px'></iframe></center>"
+            } else {
+                transcript += "<p class='middle'>Still working on this...</p>"
+            }
             // var storyNameParsed = storyName.split('_').join(' ');
             res.render('story-page.html', {storyName: data.story_name, storyPath: storyName,
-                                       producers: data.producers, intro: data.description, music: data.music_credit})
+                                       producers: data.producers, intro: story_decription, music: music_credit, transcript:transcript})
+            
         }
 
     });
