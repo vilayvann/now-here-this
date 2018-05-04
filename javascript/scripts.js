@@ -9,10 +9,15 @@ var keyword_extractor = require("keyword-extractor");
 var unique = require('array-unique');
 // var tm = require('text-miner');
 const pdf = require('pdf-parse');
+var pdfText = require('pdf-text')
 var path = require('path');
+var sleep = require('sleep');
 
 // PDFParser = require('pdf2json');
 // let pdfParser = new PDFParser(this, 1);
+
+var storyKeywordsMap = []
+var storyBufferMap = []
 
 function changeDirNames() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
@@ -66,75 +71,33 @@ function changeFileNames() {
 	}
 }
 
-function changeTitle(string) {
-	
-}
-
-
-function stemWordsFromPdfTranscript() {
+function readPdf() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
-	var transcript = []
-	for (i = 1; i < dir_list.length; i++) {
-		var string = dir_list[i] + "/"
-		var newname = string.replace('../stories/', '').replace('/', '');
-		
-		var file_list = fs.readdirSync(string)
-
-		if (file_list.indexOf(newname + '.pdf') != -1) {
-			var dataBuffer = fs.readFileSync(string + newname + '.pdf');
-
-			// fs.readFile(string + newname + '.pdf', (err, pdfBuffer) => {
-			// 	new pdfreader.PdfReader().parseBuffer(pdfBuffer, function(err, data) {
-			// 		if (err)
-			// 	    callback(err);
-			// 	  else if (!data)
-			// 	    callback();
-			// 	  else if (data.text)
-			// 	    console.log(data.text);
-			// 		// First extract all keywords from the pdf transcript.
-			// 		var keywords = keyword_extractor.extract(data.text,{language:"english",
-	  //                                                   remove_digits: true,
-	  //                                                   return_changed_case:true,
-	  //                                                   remove_duplicates: true,
-	 	// 											});
-			// 		// Then, for every keyword stem it and remove all special characters.
-			// 		var stemmed_keywords = keywords.map(function(word) {
-			// 			return stemmer(word).replace(/[^\w\s]/gi, '');
-			// 		});
-
-			// 		// Make sure every word in the array is unique, and push to database.
-			// 		db.pushKeywordsToDatabase(newname, unique(stemmed_keywords));
-
-			// 	});
-			// 	console.log('EXIST')
-			// });
-			
-			// console.log(dataBuffer)
-			pdf(dataBuffer).then(function(data) {
-				// transcript.push(data.text)
-				// console.log(data.text);
-				// dict[newname] = data.text;
-
-				// First extract all keywords from the pdf transcript.
-				var keywords = keyword_extractor.extract(data.text,{language:"english",
-                                                    remove_digits: true,
-                                                    return_changed_case:true,
-                                                    remove_duplicates: true,
- 												});
-				// Then, for every keyword stem it and remove all special characters.
-				var stemmed_keywords = keywords.map(function(word) {
-					return stemmer(word).replace(/[^\w\s]/gi, '');
+	folders = fs.readdirSync('../stories');
+	console.log(folders)
+	folders.forEach(function(folder) {
+		files = fs.readdirSync('../stories/' + folder);
+		files.forEach(function(file) {
+			var sub = file.split('.')
+			if (sub[1] == 'pdf') {
+				var contents = fs.readFileSync('../stories/' + folder + '/' + file)
+				pdf(contents).then(function(data) {
+					var keywords = keyword_extractor.extract(data.text,{language:"english",
+                                                remove_digits: true,
+                                                return_changed_case:true,
+                                                remove_duplicates: true,
+												});
+					var stemmed_keywords = keywords.map(function(word) {
+						var k = stemmer(word)
+						k = k.replace(/[^\w\s]/gi, '');
+						return k
+					});
+					keywords = unique(stemmed_keywords)
+					db.populateKeywords(sub[0], keywords);
 				});
-
-				// Make sure every word in the array is unique, and push to database.
-				db.pushKeywordsToDatabase(newname, unique(stemmed_keywords));
-
-			})
-		} 
-		// else {
-		// 	console.log(string)
-		// }
-	}
+			}
+		})
+	})
 }
 
 function getFileExtension(filename_str) {
@@ -145,7 +108,8 @@ function getFileExtension(filename_str) {
 
 // changeFileNames()
 
-stemWordsFromPdfTranscript()
+// stemWordsFromPdfTranscript()
+// readPdf()
 
 // changeStaffPhotoNames()
 
