@@ -14,6 +14,7 @@ var result = []
 
 // Input: the original search string.
 function search(search_string) {
+  console.log("search is called")
 	search_string = search_string.toLowerCase()
 
 	var words = search_string.split(' ')

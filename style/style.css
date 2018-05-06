@@ -62,7 +62,6 @@ a {
 
 .search-li {
   padding-top: 7px;
-
 }
 
 .search-input {
@@ -70,8 +69,8 @@ a {
   border: none;
   border-radius: 5px;
   background: #c9c9c9;
-  padding: 3px;
-  margin-right: 5px;
+  padding: 5px;
+  margin-right: 6px;
 }
 
 .search-icon {

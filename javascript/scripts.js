@@ -93,7 +93,19 @@ function readPdf() {
 						return k
 					});
 					keywords = unique(stemmed_keywords)
-					db.populateKeywords(sub[0], keywords);
+
+					var story_name = folder.split('_').join(' ');
+
+					if (folder == '5am_rockefeller_library') 
+						story_name = '5am, rockefeller library'
+					if (folder == 'dont_drink_the_water')
+						story_name = "don't drink the water"
+					if (folder == 'mens_story_project') 
+						story_name = "men's story project"
+					if (folder == 'whats_really_scary') 
+						story_name = "what's really scary"
+					
+					db.populateKeywords(sub[0], story_name, keywords);
 				});
 			}
 		})
@@ -104,15 +116,6 @@ function getFileExtension(filename_str) {
 	return path.extname(filename_str)
 }
 
-// changeDirNames()
-
-// changeFileNames()
-
-// stemWordsFromPdfTranscript()
-// readPdf()
+readPdf()
 
 // changeStaffPhotoNames()
-
-// for (i in dict) {
-// 	console.log("Name: " + i)
-// }

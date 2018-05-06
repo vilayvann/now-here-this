@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="style/style.css">
     <script defer src="style/fontawesome-all.js"></script>
+    <script src="javascript/search.js"></script>
   </head>
 
   <body>
@@ -26,13 +27,13 @@
                 <a href='staff.html'>STAFF</a>
               </div>
             </li>
-            <li class="nav-item dropdown-2"><a class="nav-link" >ARCHIVE</a>
+            <li class="nav-item dropdown-2 active"><a class="nav-link" href="#">ARCHIVE</a>
               <div class='dropdown-content-2'>
-                <a href='archive.html'>STORIES</a><br>
+                <a href='#'>STORIES</a><br>
                 <a href='issues.html'>ISSUES</a>
               </div>
             </li>
-            <li class="nav-item active"><a class="nav-link" href="#">CONTACT</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
           </ul>
           <ul class="navbar-nav ml-auto">
             <form class="navbar-form navbar-left" action="/results.html" method="POST">
@@ -48,31 +49,15 @@
         </div>
       </div>
     </nav>
-      
+
+
     <div class="container body">
       <div class='row headers'>
         <div class='col-12'>
-          <h3 class='header-text'><span class='header-span'>SUBSCRIBE</span></h3>
+          <h3 class='header-text'><span class='header-span'>SEARCH RESULTS</span></h3>
         </div>
       </div>
-      <div class='row'>
-        <div class='col-12'>
-          <p>Follow us on iTunes: <a href='https://itunes.apple.com/us/podcast/now-here-this/id975077059?mt=2'><img src='../images/itunes.png' width='20px'/></a></p>
-          <p>Follow us on Facebook: <a href='https://www.facebook.com/nowherethisaudio/'><i class='fab fa-facebook'></i></a></p>
-          <p>Follow us on Twitter: <a href='https://twitter.com/itsNowHereThis'><i class='fab fa-twitter'></i></a></p>
-        </div>
-      </div>
-      <div class='row headers'>
-        <div class='col-12'>
-          <h3 class='header-text'><span class='header-span'>CONTACT INFO</span></h3>
-        </div>
-      </div>
-
-      <div id="">
-        <p>If you have any questions, email <a href="mailto:info@nowherethis.org?Subject=Hello" target="_top">info@nowherethis.org</a>.</p>
-        <p>If you want to pitch a story, email <a href="mailto:pitch@nowherethis.org?Subject=Pitch" target="_top">pitch@nowherethis.org</a>.</p>
-        <p>If you are interested in joining the team, please apply <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUf1wJ9KUEQBp5dFWLbKpOeykTJfi6-CKrRK-f8pHM9xmYTA/closedform">here</a>.</p>
-      </div>
+      {{{stories}}}
     </div>
     <footer class="page-footer font-small dark pt-4 pb-2 mt-4">
       <div class='container'>
@@ -84,6 +69,5 @@
         </div>
       </div>
     </footer>
-
   </body>
 </html>

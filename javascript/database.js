@@ -62,6 +62,7 @@ var Staff = mongoose.model('Staff', staff_schema);
 
 var keywords_schema = new mongoose.Schema({
     story_id: String,
+    story_name: String,
     keywords: [ String ]
 })
 var Keywords = mongoose.model('Keywords', keywords_schema);
@@ -109,9 +110,10 @@ function populateStaffSchema(name, role, year, bio) {
     // mongoose.connection.close();
 }
 
-function populateKeywords(story_id, keywords) {
+function populateKeywords(story_id, story_name, keywords) {
     var keywords = new Keywords({
         story_id: story_id,
+        story_name: story_name,
         keywords: keywords
     });
     keywords.save(function(err, data) {
