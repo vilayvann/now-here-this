@@ -32,11 +32,8 @@
     "pdfreader": "^0.2.5",
     "request": "^2.85.0",
     "rnum": "^1.0.0",
-<<<<<<< HEAD
-=======
     "sleep": "^5.1.1",
     "stemmer": "^1.0.2"
->>>>>>> b323afe4f824125f6cc44bd319d5370024b29cd2
   },
   "devDependencies": {
     "jasmine": "^3.1.0"
