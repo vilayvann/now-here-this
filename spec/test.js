@@ -1,5 +1,6 @@
 var request = require("request");
-var app = require("../javascript/index.js");
+var app = require("../index.js");
+var sleep = require("sleep");
 
 var base_url = "http://localhost:8080/";
 
@@ -38,7 +39,6 @@ describe("Back End Test", function(){
     it("/contact returns status code 200", function(done){
       request.get(base_url + "contact.html", function(err, res, body) {
         expect(res.statusCode).toBe(200);
-        app.closeServer();
         done();
       });
     });
