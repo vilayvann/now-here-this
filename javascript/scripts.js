@@ -1,9 +1,23 @@
 var utils = require('./utils.js')
+var db = require('./database.js')
+
 const fs = require('fs');
+var pdfreader = require('pdfreader');
+var stemmer = require('stemmer');
+var natural = require('natural');
+var keyword_extractor = require("keyword-extractor");
+var unique = require('array-unique');
+// var tm = require('text-miner');
+const pdf = require('pdf-parse');
+var pdfText = require('pdf-text')
+var path = require('path');
+var sleep = require('sleep');
+
 // PDFParser = require('pdf2json');
 // let pdfParser = new PDFParser(this, 1);
-const pdf = require('pdf-parse');
-var path = require('path')
+
+var storyKeywordsMap = []
+var storyBufferMap = []
 
 function changeDirNames() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
@@ -57,51 +71,51 @@ function changeFileNames() {
 	}
 }
 
-function changeTitle(string) {
-	
-}
-
-
-function convertPdfToJson() {
+function readPdf() {
 	var dir_list = utils.getDirectoriesRecursive('../stories')
-	var transcript = []
-	for (i = 1; i < dir_list.length; i++) {
-		var string = dir_list[i] + "/"
-		var newname = string.replace('../stories/', '').replace('/', '');
-		
-		var file_list = fs.readdirSync(string)
+	folders = fs.readdirSync('../stories');
+	console.log(folders)
+	folders.forEach(function(folder) {
+		files = fs.readdirSync('../stories/' + folder);
+		files.forEach(function(file) {
+			var sub = file.split('.')
+			if (sub[1] == 'pdf') {
+				var contents = fs.readFileSync('../stories/' + folder + '/' + file)
+				pdf(contents).then(function(data) {
+					var keywords = keyword_extractor.extract(data.text,{language:"english",
+                                                remove_digits: true,
+                                                return_changed_case:true,
+                                                remove_duplicates: true,
+												});
+					var stemmed_keywords = keywords.map(function(word) {
+						var k = stemmer(word)
+						k = k.replace(/[^\w\s]/gi, '');
+						return k
+					});
+					keywords = unique(stemmed_keywords)
 
-		if (file_list.indexOf(newname + '.pdf') != -1) {
-			var dataBuffer = fs.readFileSync(string + newname + '.pdf');
-			console.log('EXIST' + string)
-			// console.log(dataBuffer)
-			pdf(dataBuffer).then(function(data) {
-				// transcript.push(data.text)
-				// console.log(data.text);
-				// dict[newname] = data.text;
-				console.log('******************************')
-				console.log(data.text);
-			})
-		} else {
-			console.log(string)
-		}
-		console.log
-	}
-	console.log(transcript.length)
+					var story_name = folder.split('_').join(' ');
+
+					if (folder == '5am_rockefeller_library') 
+						story_name = '5am, rockefeller library'
+					if (folder == 'dont_drink_the_water')
+						story_name = "don't drink the water"
+					if (folder == 'mens_story_project') 
+						story_name = "men's story project"
+					if (folder == 'whats_really_scary') 
+						story_name = "what's really scary"
+					
+					db.populateKeywords(sub[0], story_name, keywords);
+				});
+			}
+		})
+	})
 }
 
 function getFileExtension(filename_str) {
 	return path.extname(filename_str)
 }
 
-// changeDirNames()
+readPdf()
 
-// changeFileNames()
-
-// convertPdfToJson()
-
-changeStaffPhotoNames()
-
-// for (i in dict) {
-// 	console.log("Name: " + i)
-// }
+// changeStaffPhotoNames()

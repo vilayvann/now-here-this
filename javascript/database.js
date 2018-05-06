@@ -60,6 +60,13 @@ var staff_schema = new mongoose.Schema({
 
 var Staff = mongoose.model('Staff', staff_schema);
 
+var keywords_schema = new mongoose.Schema({
+    story_id: String,
+    story_name: String,
+    keywords: [ String ]
+})
+var Keywords = mongoose.model('Keywords', keywords_schema);
+
 // TODO: Might not need to store mp3, pdf file names in database, since we can go into dir and get them.
 function populateDatabase(story_title, audio_filename, producer_first, producer_last, transcript, story_image, date_produced, keywords_in_transcript, issue_id, issue_name, views, shares) {
     console.log(story_title)
@@ -87,7 +94,6 @@ function populateInitial(story_id, story_name, producers, helpers, description, 
         if (err) return console.error(err);
         // console.log(data);
     });
-    // mongoose.connection.close();
 }
 
 function populateStaffSchema(name, role, year, bio) {
@@ -104,10 +110,61 @@ function populateStaffSchema(name, role, year, bio) {
     // mongoose.connection.close();
 }
 
-// TODO
-function updateDatabase() {
-    return
+function populateKeywords(story_id, story_name, keywords) {
+    var keywords = new Keywords({
+        story_id: story_id,
+        story_name: story_name,
+        keywords: keywords
+    });
+    keywords.save(function(err, data) {
+        if (err) return console.error(err);
+        console.log("sucess")
+    })
 }
+
+// keywords is an array of words.
+function pushKeywordsToDatabase(story_id, keywords) {
+    // mongoose.connect('mongodb://now-here-this:nowherethisboringpassword2018@ds255347.mlab.com:55347/now-here-this');
+    // var query = { story_id: story_id };
+    // var new_values = { $set: {keywords_in_transcript: keywords} };
+
+    // Story.find({"story_id": story_id}, function(err, story) {
+    //     story.keywords_in_transcript = keywords
+    //     story.save(function(err, data) {
+    //         if (err) return console.error(err);
+    //     });
+    // });
+
+    // Story.create({ story_id: story_id }, function(err, data) {
+    //     data.keywords_in_transcript = keywords;
+    //     data.save(function(err) {
+    //         if (err) return console.error(err)
+    //     });
+    // });
+
+    Story.update({story_id: story_id}, {
+        keywords_in_transcript: keywords
+    }, function(err, res) {
+        if (err) throw err;
+       console.log("updated")
+    })
+
+    // console.log("updated")
+    console.log(story_id)
+
+    // story.save(function(err, data) {
+    //     if (err) return console.error(err);
+    // });
+
+    // Story.findOneAndUpdate(query, new_values, function(err, res) {
+    //     if (err) throw err;
+    //     console.log("pushed keywords successfully")
+    // });
+    // mongoose.connection.close();
+}
+
 
 exports.populateInitial = populateInitial
 exports.populateStaffSchema = populateStaffSchema
+exports.pushKeywordsToDatabase = pushKeywordsToDatabase
+exports.populateKeywords = populateKeywords

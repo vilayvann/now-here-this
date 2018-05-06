@@ -1,6 +1,7 @@
 var express = require('express'),
     bp = require('body-parser'),
     hogan = require('hogan.js'),
+    stemmer = require('stemmer');
     engines = require('consolidate'),
     mongoose = require('mongoose');
 
@@ -27,6 +28,7 @@ var story_schema = new mongoose.Schema({
     date_produced: String,
     // keywords_in_transcript: [ String ], // implement later
     issue_id: Number, // stories without an issue have id 0, else it's 1, 2, ...
+    transcript: Number,
     // issue_name: String, 
     meta: {
         views: Number, // optional
@@ -45,8 +47,54 @@ var staff_schema = new mongoose.Schema({
 
 var Staff = mongoose.model('Staff', staff_schema);
 
+var keywords_schema = new mongoose.Schema({
+    story_id: String,
+    story_name: String,
+    keywords: [ String ]
+});
+
+var Keywords = mongoose.model('Keywords', keywords_schema);
+
 app.get('/', function(req, res){
     res.redirect('/index.html');
+});
+
+app.post('/results.html', function(req, res) {
+    console.log(req.body.searchInput)
+    words = req.body.searchInput.toLowerCase().split(' ')
+    // search_string = search_string.toLowerCase()
+
+    // var words = search_string.split(' ')
+    // stem those words.
+    var stemmed = words.map(function(word) {
+        var new_word = stemmer(word)
+        return new_word
+    });
+
+    Keywords.find().or([{ story_id: { $regex: stemmed, $options: "$i" }}, { keywords: { $in: stemmed }}]).exec(
+        function (err, data) {
+            var stories = "";
+            if (err) {
+                console.log(err)
+            }
+            for (var i = 0; i < data.length; i++) {
+                if (i % 4 == 0) {
+                    stories += "<div class='row'>";
+                }
+                // var storyName = data[i].story_id.split('_').join(' ');
+                stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
+                if (i % 4 == 3 || i == data.length - 1) {
+                    stories += "</div>";
+                }
+            }
+            // console.log(data.length)
+            // for (i = 0; i < data.length; i++) {
+            //     result.push(data[i].story_id)
+            // }
+
+            res.render('results.html', {stories: stories})
+        }); 
+    
 });
 
 app.get('/index.html', function(req, res){
@@ -136,17 +184,30 @@ app.get('/:storyName', function(req, res){
                         }
                         res.render('staff-page.html', {staffName: nameLower, name: name, role: data[0].role, year: data[0].year, intro: data[0].bio, stories: stories});
                     });
-                });
+                })
         } else {
+            var story_decription ="";
+            var music_credit="";
+            var transcript="";
+            if (data.description!="") { 
+                story_decription += "<div>Description: "+ data.description+"</div>"
+            } 
+            if (data.music_credit!="") {
+                music_credit  += "<div>Music Credit: " + data.music_credit+ "</div>"
+            }
+            if (data.transcript==1) {
+                transcript += "<center><iframe src='../stories/"+ data.story_id+"/"+data.story_id +".pdf' frameborder='0' width='600px' height='600px'></iframe></center>"
+            } else {
+                transcript += "<p class='middle'>Still working on this...</p>"
+            }
             // var storyNameParsed = storyName.split('_').join(' ');
             res.render('story-page.html', {storyName: data.story_name, storyPath: storyName,
-                                       producers: data.producers, intro: data.description, music: data.music_credit})
+                                       producers: data.producers, intro: story_decription, music: music_credit, transcript:transcript})
+            
         }
 
     });
 });
-
-
 
 var server = app.listen(8080, function(){
   console.log('Server is listening on port 8080');

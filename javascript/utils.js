@@ -62,16 +62,16 @@ function readFromCsvAndPopulateStorySchema() {
 			}
 			// Convert story_id to regular story name.
 			// Handle edge cases.
-			// var story_name = record.story_id.split('_').join(' ');
-			// if (story_id == '5am_rockefeller_library')
-			// 	story_name = '5am, rockefeller library'
-			// if (story_id == 'dont_drink_the_water')
-			// 	story_name = "don't drink the water"
-			// if (story_id == 'mens_story_project')
-			// 	story_name = "men's story project"
-			// if (story_id == 'whats_really_scary')
-			// 	story_name = "what's really scary"
-			// db.populateInitial(record.story_id, record.story_name, split_producer, split_helper, record.description, record.illustrator_credit, record.music_credit, new Date(date_produced), record.issue, parseInt(record.transcript))
+			var story_name = record.story_id.split('_').join(' ');
+			if (record.story_id == '5am_rockefeller_library')
+				story_name = '5am, rockefeller library'
+			if (record.story_id == 'dont_drink_the_water')
+				story_name = "don't drink the water"
+			if (record.story_id == 'mens_story_project')
+				story_name = "men's story project"
+			if (record.story_id == 'whats_really_scary')
+				story_name = "what's really scary"
+			db.populateInitial(record.story_id, record.story_name, split_producer, split_helper, record.description, record.illustrator_credit, record.music_credit, new Date(date_produced), record.issue, parseInt(record.transcript))
 		}
 	});
 
