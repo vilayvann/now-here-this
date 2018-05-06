@@ -201,3 +201,15 @@ footer {
 .middle {
   text-align: center;
 }
+
+#issue-1-image {
+  width: 600px;
+  height: 200px;
+  margin: 50px 0px 100px 0px;
+}
+
+#issue-2-image {
+  width: 600px;
+  height: 200px;
+  margin: 50px 0px 100px 0px;
+}
