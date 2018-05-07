@@ -203,7 +203,7 @@ footer {
   text-align: center;
 }
 
-#issue-images {
+.issue-images {
   width: 600px;
   height: 200px;
   margin: 50px 0px 100px 0px;
@@ -217,4 +217,10 @@ button, input[type="submit"]{
     font: inherit;
     cursor: pointer;
     outline: inherit;
+}
+
+#index-issue-image {
+  width: 600px;
+  height: 200px;
+  margin: 10px 0px 50px 0px;
 }
