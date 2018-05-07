@@ -3,6 +3,11 @@ body {
   font-family: 'Libre Franklin';
 }
 
+a:hover {
+  text-decoration: none;
+  color: #0c4cb2;
+}
+
 nav {
   background-color: black;
   font-family: 'Josefin Sans';
@@ -65,7 +70,7 @@ a {
   border: none;
   border-radius: 5px;
   background: #c9c9c9;
-  padding: 5px 4px 2px 4px;
+  padding: 4px 4px 3px 4px;
   margin-right: 6px;
 }
 
@@ -198,13 +203,7 @@ footer {
   text-align: center;
 }
 
-#issue-1-image {
-  width: 600px;
-  height: 200px;
-  margin: 50px 0px 100px 0px;
-}
-
-#issue-2-image {
+#issue-images {
   width: 600px;
   height: 200px;
   margin: 50px 0px 100px 0px;
