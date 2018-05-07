@@ -65,7 +65,13 @@ a {
   padding-top: 2px;
 }
 
+.navbar-form {
+  width: 200px;
+  margin-right: -10px;
+}
+
 .search-input {
+  max-width: 100px;
   line-height: 10px;
   border: none;
   border-radius: 5px;

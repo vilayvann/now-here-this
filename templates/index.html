@@ -13,10 +13,10 @@
   <body>
     <nav class="navbar navbar-inverse navbar-toggleable-sm fixed-top">
       <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-id" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbar">
+        <div class="collapse navbar-collapse" id="navbar-id">
           <ul class="navbar-nav mr-auto">
             <li class='nav-item'><a class="nav-link" href="#"><img src="../images/white_logo.png" alt="logo" class="logo"/></a></li>
             <li class="nav-item active"><a class="nav-link" href="#">HOME</a></li>
@@ -28,17 +28,17 @@
             </li>
             <li class="nav-item dropdown-2"><a class="nav-link" >ARCHIVE</a>
               <div class='dropdown-content-2'>
-                  <a href='archive.html'>STORIES</a><br>
+                <a href='archive.html'>STORIES</a><br>
                 <a href='issues.html'>ISSUES</a>
               </div>
             </li>
             <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <form class="navbar-form navbar-left" action="/results.html" method="POST">
+            <form class="navbar-form form-inline" action="/results.html" method="POST">
               <li class='nav-item search-li'><input name="searchInput" type="text" placeholder="search story" class='search-input'></li>
-                <li class='nav-item icons search-icon'><button type='submit'><i class='fas fa-search'></i></button>
-                </li>
+              <li class='nav-item icons search-icon'><button type='submit'><i class='fas fa-search'></i></button>
+              </li>
             </form>
             <li class='nav-item icons'><a href='https://www.facebook.com/nowherethisaudio/'><i class='fab fa-facebook'></i></a></li>
             <li class='nav-item icons'><a href='https://twitter.com/itsNowHereThis'><i class='fab fa-twitter'></i></a></li>
@@ -50,7 +50,7 @@
     <div class="container body">
       <div class='row logo-header-wrapper'>
         <div class='col-12'>
-<!--          <h3 class='issue-text'>Now Here This</h3>-->
+          <!--          <h3 class='issue-text'>Now Here This</h3>-->
           <img src='../images/black_logo.png' class='logo-header'/>
         </div>
       </div>
@@ -59,9 +59,9 @@
           <h3 class='header-text'><span class='header-span'>FEATURED STORIES</span></h3>
         </div>
       </div>
-        
+
       <div class='row'>
-          {{{stories}}}
+        {{{stories}}}
       </div>
       <div class='row headers'>
         <div class='col-12'>
@@ -100,6 +100,8 @@
         </div>
       </div>
     </footer>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   </body>
 </html>

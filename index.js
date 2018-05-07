@@ -110,7 +110,7 @@ app.get('/index.html', function(req, res){
     Story.find({}, function(err, data){
         var stories = "";
         for (var i = 0; i < data.length; i++) {
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
+            stories += "<div class='col-md-3 col-6'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
         }
         res.render('index.html', {stories: stories});
     }).limit(4).sort({date_produced: -1});
@@ -132,7 +132,7 @@ app.get('/archive.html', function(req, res){
                 stories += "<div class='row'>";
             }
             // var storyName = data[i].story_id.split('_').join(' ');
-            stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
+            stories += "<div class='col-md-3 col-6'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 stories += "</div>";
             }
@@ -154,7 +154,7 @@ app.get('/staff.html', function(req, res){
             }
             var path = data[i].name;
             var lower = path.toLowerCase();
-            staff += "<div class='col-3'><div class='stories'><a href='/" + path + "'><img src='../staff/" + lower + ".jpg' class='story-images'></a><h6>" + data[i].name + "</h6></div></div>"
+            staff += "<div class='col-md-3 col-6'><div class='stories'><a href='/" + path + "'><img src='../staff/" + lower + ".jpg' class='story-images'></a><h6>" + data[i].name + "</h6></div></div>"
             if (i % 4 == 3 || i == data.length - 1) {
                 staff += "</div>";
             }
