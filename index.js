@@ -74,23 +74,32 @@ app.post('/results.html', function(req, res) {
     Keywords.find().or([{ story_id: { $regex: stemmed, $options: "$i" }}, { keywords: { $in: stemmed }}]).exec(
         function (err, data) {
             var stories = "";
+            // console.log(data)
             if (err) {
                 console.log(err)
             }
+
+                
+
             for (var i = 0; i < data.length; i++) {
                 if (i % 4 == 0) {
                     stories += "<div class='row'>";
                 }
-                // var storyName = data[i].story_id.split('_').join(' ');
-                stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + data[i].story_name + "</h6></div></div>"
+
+                var name = data[i].story_id.split('_').join(' ');
+                if (data[i].story_id == '5am_rockefeller_library')
+                    name = '5am, rockefeller library'
+                if (data[i].story_id == 'dont_drink_the_water')
+                    name = "don't drink the water"
+                if (data[i].story_id == 'mens_story_project')
+                    name = "men's story project"
+                if (data[i].story_id == 'whats_really_scary')
+                    name = "what's really scary"
+                stories += "<div class='col-3'><div class='stories'><a href='/" + data[i].story_id + "'><img src='../stories/" + data[i].story_id + "/" + data[i].story_id + ".jpg' class='story-images'></a><h6>" + name + "</h6></div></div>"
                 if (i % 4 == 3 || i == data.length - 1) {
                     stories += "</div>";
                 }
             }
-            // console.log(data.length)
-            // for (i = 0; i < data.length; i++) {
-            //     result.push(data[i].story_id)
-            // }
 
             res.render('results.html', {stories: stories})
         }); 
